@@ -71,11 +71,13 @@ function upgrade_chart {
   source ./$3/settings.sh
   k8s_context=$(get_k8s_context $@)
   values_arg=$(get_values_argument $@)
+  k8s_namespace=$(get_k8s_namespace $@)
 
   helm upgrade \
     $3 \
     $chart_name \
     --kube-context=$k8s_context \
+    --namespace $k8s_namespace \
     $values_arg \
     $arguments
 }
@@ -83,10 +85,12 @@ function upgrade_chart {
 function uninstall_chart {
   source ./$3/settings.sh
   k8s_context=$(get_k8s_context $@)
+  k8s_namespace=$(get_k8s_namespace $@)
 
   helm uninstall \
     $3 \
-    --kube-context=$k8s_context
+    --kube-context=$k8s_context \
+    --namespace $k8s_namespace \
 }
 
 function run_chart_command {
