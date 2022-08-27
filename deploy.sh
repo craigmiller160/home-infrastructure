@@ -35,27 +35,37 @@ function get_k8s_context {
   esac
 }
 
+function get_values_argument {
+  if [ -f ./$3/values.yml ]; then
+    echo "--values ./$3/values.yml"
+  else
+    echo ""
+  fi
+}
+
 function install_chart {
   source ./$3/settings.sh
   k8s_context=$(get_k8s_context $@)
+  values_arg=$(get_values_argument $@)
 
   helm install \
     $3 \
     $chart_name \
     --kube-context=$k8s_context \
-    --values ./$3/values.yml \
+    $values_arg \
     $arguments
 }
 
 function upgrade_chart {
   source ./$3/settings.sh
   k8s_context=$(get_k8s_context $@)
+  values_arg=$(get_values_argument $@)
 
   helm upgrade \
     $3 \
     $chart_name \
     --kube-context=$k8s_context \
-    --values ./$3/values.yml \
+    $values_arg \
     $arguments
 }
 
