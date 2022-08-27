@@ -46,7 +46,7 @@ function install_chart {
     $arguments
 }
 
-function update_chart {
+function upgrade_chart {
   source ./$3/settings.sh
   k8s_context=$(get_k8s_context $@)
 
