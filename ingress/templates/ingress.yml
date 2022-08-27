@@ -7,13 +7,17 @@ metadata:
     kubernetes.io/ingress.class: public
 spec:
   rules:
-    - host: apps-dev-craigmiller160.ddns.net
+    {{- range $index, $host := .Values.ingress.hosts }}
+    - host: {{ $host.name }}
       http:
         paths:
-          - path: /ingress-test
+          {{- range $index2, $service := $host.services }}
+          - path: {{ $service.path }}
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.ingress_test.name }}
+                name: {{ $service.serviceName }}
                 port:
-                  number: 80
+                  number: {{ $service.portNumber }}
+          {{- end }}
+    {{- end }}

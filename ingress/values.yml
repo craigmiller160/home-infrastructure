@@ -2,3 +2,10 @@ ingress_test:
   name: ingress-test
 ingress:
   name: cluster-ingress
+  hosts:
+    - name: apps-dev-craigmiller160.ddns.net
+      services:
+        - path: /ingress-test
+#          serviceName: {{ .Values.ingress_test.name }}
+          serviceName: ingress-test
+          portNumber: 80

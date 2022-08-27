@@ -67,6 +67,21 @@ function install_chart {
     $arguments
 }
 
+function template_chart {
+  source ./$3/settings.sh
+  k8s_context=$(get_k8s_context $@)
+  values_arg=$(get_values_argument $@)
+  k8s_namespace=$(get_k8s_namespace $@)
+
+  helm template \
+    $3 \
+    $chart_name \
+    --kube-context=$k8s_context \
+    --namespace $k8s_namespace \
+    $values_arg \
+    $arguments
+}
+
 function upgrade_chart {
   source ./$3/settings.sh
   k8s_context=$(get_k8s_context $@)
@@ -98,6 +113,7 @@ function run_chart_command {
     "install") install_chart $@ ;;
     "upgrade") upgrade_chart $@ ;;
     "uninstall") uninstall_chart $@ ;;
+    "template") template_chart $@ ;;
     *)
       echo "Invalid chart command: $2"
       exit 1
