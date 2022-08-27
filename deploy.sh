@@ -90,7 +90,7 @@ function uninstall_chart {
   helm uninstall \
     $3 \
     --kube-context=$k8s_context \
-    --namespace $k8s_namespace \
+    --namespace $k8s_namespace
 }
 
 function run_chart_command {
