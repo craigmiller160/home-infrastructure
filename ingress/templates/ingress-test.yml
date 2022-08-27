@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ingress_test.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.ingress_test.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.ingress_test.name }}
+    spec:
+      containers:
+        - name: {{ .Values.ingress_test.name }}
+          image: nginxdemos/hello
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.ingress_test.name }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .Values.ingress_test.name }}
+  ports:
+    - port: 80
+      targetPort: 80
