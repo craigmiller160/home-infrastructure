@@ -1,5 +1,5 @@
 .DS_Store
 .idea
 *.iml
-1password-connect/1password_creds.json
-1password-operator/1password_token.txt
+1password/1password_creds.json
+1password/1password_token.txt
