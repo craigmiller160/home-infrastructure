@@ -33,10 +33,6 @@ function validate_arguments {
 }
 
 function get_k8s_context {
-#  case $1 in
-#    "dev") echo "microk8s-dev" ;;
-#    "prod") echo "microk8s-prod" ;;
-#  esac
   # TODO need to rename my cluster contexts
   echo "microk8s-prod"
 }
