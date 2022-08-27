@@ -1,2 +1,4 @@
 ingress_test:
   name: ingress-test
+ingress:
+  name: cluster-ingress
