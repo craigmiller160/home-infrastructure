@@ -24,9 +24,10 @@ kind: Service
 metadata:
   name: {{ .Values.ingress_test.name }}
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: {{ .Values.ingress_test.name }}
   ports:
     - port: 80
       targetPort: 80
+      nodePort: 31111
