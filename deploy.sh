@@ -19,17 +19,21 @@ function validate_deployment_directory {
   fi
 }
 
-function deploy_chart {
+function install_chart {
   source ./$1/settings.sh
 
   helm install \
     $1 \
     $chart_name \
-    --kube-context=microk8s-dev \
+    --kube-context=$K8S_CONTEXT \
     --values ./$1/values.yml \
     $arguments
 }
 
+function uninstall_chart {
+  echo "TBD"
+}
+
 validate_deployment_directory $@
 ensure_repos_added
-deploy_chart $@
+install_chart $@
