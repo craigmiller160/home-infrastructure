@@ -20,13 +20,14 @@ function validate_deployment_directory {
 }
 
 function deploy_chart {
-  # TODO figure out how to derive chart name and --set-file from directory
+  source ./$1/settings.sh
+
   helm install \
     $1 \
-    1password/connect \
+    $chart_name \
     --kube-context=microk8s-dev \
     --values ./$1/values.yml \
-    --set-file connect.credentials=./$1/1password_creds.json
+    $arguments
 }
 
 validate_deployment_directory $@
