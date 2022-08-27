@@ -1,7 +1,17 @@
 #!/bin/sh
 
-# TODO this will need to be configurable
-K8S_CONTEXT=microk8s-dev
+# Script Arguments
+# $1 = environment, $2 = command, $3 = deployment directory
+
+function validate_env {
+  case $1 in
+    "dev"|"prod") return 0 ;;
+    *)
+      echo "Invalid environment: $1"
+      exit 1
+    ;;
+  esac
+}
 
 function ensure_repos_added {
   helm repo add 1password https://1password.github.io/connect-helm-charts
@@ -19,14 +29,22 @@ function validate_deployment_directory {
   fi
 }
 
+function get_k8s_context {
+  case $1 in
+    "dev") echo "microk8s-dev" ;;
+    "prod") echo "microk8s-prod" ;;
+  esac
+}
+
 function install_chart {
-  source ./$1/settings.sh
+  source ./$3/settings.sh
+  k8s_context=$(get_k8s_context $@)
 
   helm install \
-    $1 \
+    $3 \
     $chart_name \
-    --kube-context=$K8S_CONTEXT \
-    --values ./$1/values.yml \
+    --kube-context=$k8s_context \
+    --values ./$3/values.yml \
     $arguments
 }
 
@@ -34,6 +52,18 @@ function uninstall_chart {
   echo "TBD"
 }
 
+function run_chart_command {
+  case $2 in
+    "install") install_chart $@ ;;
+    "uninstall") uninstall_chart $@ ;;
+    *)
+      echo "Invalid chart command: $2"
+      exit 1
+    ;;
+  esac
+}
+
+validate_env $@
 validate_deployment_directory $@
-ensure_repos_added
-install_chart $@
+ensure_repos_added $@
+run_chart_command $@
