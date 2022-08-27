@@ -106,5 +106,6 @@ function run_chart_command {
 }
 
 validate_arguments $@
+ensure_cluster_setup $@
 ensure_repos_added $@
 run_chart_command $@
