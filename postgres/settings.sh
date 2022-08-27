@@ -1,0 +1,2 @@
+chart_name=bitnami/postgresql
+arguments=
