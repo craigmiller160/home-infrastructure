@@ -38,6 +38,8 @@ function install_chart {
   source ./$3/settings.sh
   k8s_context=$(get_k8s_context $@)
 
+  echo "$arguments"
+
   helm install \
     $3 \
     $chart_name \
