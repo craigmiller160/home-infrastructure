@@ -1,2 +1,2 @@
-#connect:
-#  serviceType: ClusterIP
+connect:
+  serviceType: ClusterIP
