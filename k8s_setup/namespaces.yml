@@ -1,4 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: foobar
+  name: dev
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod
