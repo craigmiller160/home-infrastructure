@@ -46,13 +46,31 @@ function install_chart {
     $arguments
 }
 
+function update_chart {
+  source ./$3/settings.sh
+  k8s_context=$(get_k8s_context $@)
+
+  helm upgrade \
+    $3 \
+    $chart_name \
+    --kube-context=$k8s_context \
+    --values ./$3/values.yml \
+    $arguments
+}
+
 function uninstall_chart {
-  echo "TBD"
+  source ./$3/settings.sh
+  k8s_context=$(get_k8s_context $@)
+
+  helm uninstall \
+    $3 \
+    --kube-context=$k8s_context
 }
 
 function run_chart_command {
   case $2 in
     "install") install_chart $@ ;;
+    "upgrade") upgrade_chart $@ ;;
     "uninstall") uninstall_chart $@ ;;
     *)
       echo "Invalid chart command: $2"
