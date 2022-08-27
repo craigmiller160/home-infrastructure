@@ -7,8 +7,8 @@ metadata:
     kubernetes.io/ingress.class: public
 spec:
   rules:
-    - http:
-        host: apps.dev.craigmiller160.info
+    - host: apps.dev.craigmiller160.info
+      http:
         paths:
           - path: /ingress-test
             pathType: Prefix
