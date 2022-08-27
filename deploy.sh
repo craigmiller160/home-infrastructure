@@ -33,9 +33,18 @@ function validate_arguments {
 }
 
 function get_k8s_context {
+#  case $1 in
+#    "dev") echo "microk8s-dev" ;;
+#    "prod") echo "microk8s-prod" ;;
+#  esac
+  # TODO need to rename my cluster contexts
+  echo "microk8s-prod"
+}
+
+function get_k8s_namespace {
   case $1 in
-    "dev") echo "microk8s-dev" ;;
-    "prod") echo "microk8s-prod" ;;
+    "dev") echo "infra-dev" ;;
+    "prod") echo "infra-prod" ;;
   esac
 }
 
@@ -50,12 +59,14 @@ function get_values_argument {
 function install_chart {
   source ./$3/settings.sh
   k8s_context=$(get_k8s_context $@)
+  k8s_namespace=$(get_k8s_namespace $@)
   values_arg=$(get_values_argument $@)
 
   helm install \
     $3 \
     $chart_name \
     --kube-context=$k8s_context \
+    --namespace $k8s_namespace \
     $values_arg \
     $arguments
 }
