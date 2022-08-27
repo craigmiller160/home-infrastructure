@@ -13,6 +13,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.ingress_test.name }}
+                name: {{ .Values.ingress_test.name }}.infra-dev
                 port:
                   number: 80
