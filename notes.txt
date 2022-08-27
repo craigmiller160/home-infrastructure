@@ -1,2 +1,5 @@
 ip route | grep default
 Above will get IP address for ingress on prod machine
+
+
+192.168.4.1/ingress-test
