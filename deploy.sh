@@ -5,6 +5,7 @@
 
 function ensure_repos_added {
   helm repo add 1password https://1password.github.io/connect-helm-charts
+  helm repo add bitnami https://charts.bitnami.com/bitnami
 }
 
 function validate_arguments {
