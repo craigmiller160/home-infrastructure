@@ -1,2 +1,6 @@
 image:
-  tag: 14.5.0
+  tag: 12.5.0-debian-10-r86
+primary:
+  service:
+    nodePorts:
+      postgresql: 30019
