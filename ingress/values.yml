@@ -7,5 +7,4 @@ ingress:
       services:
         - path: /ingress-test
           serviceName: "{{ .Values.ingress_test.name }}"
-#          serviceName: ingress-test
           portNumber: 80
