@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ $service.serviceName }}
+                name: {{ tpl ($service.serviceName) . }}
                 port:
                   number: {{ $service.portNumber }}
           {{- end }}
