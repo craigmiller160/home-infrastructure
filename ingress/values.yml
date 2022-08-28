@@ -8,3 +8,8 @@ ingress:
         - path: /ingress-test
           serviceName: "{{ .Values.ingress_test.name }}"
           portNumber: 80
+    - name: postgres-dev-craigmiller160.ddns.net
+      services:
+        - path: /
+          serviceName: postgres-postgresql
+          portNumber: 5432
