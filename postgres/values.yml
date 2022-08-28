@@ -5,3 +5,5 @@ primary:
     type: NodePort
     nodePorts:
       postgresql: 30019
+readReplicas:
+  replicaCount: 0
