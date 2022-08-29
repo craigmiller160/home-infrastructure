@@ -60,7 +60,7 @@ function install_chart {
 
   helm install \
     $3 \
-    $chart_name \
+    $3 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace \
     $values_arg \
@@ -75,7 +75,7 @@ function template_chart {
 
   helm template \
     $3 \
-    $chart_name \
+    $3 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace \
     $values_arg \
@@ -90,7 +90,7 @@ function upgrade_chart {
 
   helm upgrade \
     $3 \
-    $chart_name \
+    $3 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace \
     $values_arg \
