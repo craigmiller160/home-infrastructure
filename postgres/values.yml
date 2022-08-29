@@ -6,3 +6,5 @@ deployment:
   volumeNames:
     certsSecretVolume: postgres-certs-secret-volume
     certsVolume: postgres-certs-volume
+pvc:
+  name: postgres-pvc
