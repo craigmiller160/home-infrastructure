@@ -5,7 +5,13 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: public
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
+  tls:
+    - hosts:
+      {{- range $index, $host := .Values.ingress.hosts }}
+        - {{ $host.name }}
+      {{- end}}
   rules:
     {{- range $index, $host := .Values.ingress.hosts }}
     - host: {{ $host.name }}
