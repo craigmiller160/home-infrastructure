@@ -61,3 +61,16 @@ spec:
         - name: {{ .Values.deployment.volumeNames.certsSecretVolume }}
           secret:
             secretName: {{ .Values.deployment.secretNames.dbTlsCerts }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.deployment.name }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Values.deployment.name }}
+  ports:
+    - port: 5432
+      targetPort: 5432
+      nodePort: 30019
