@@ -44,3 +44,14 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/certs
               name: {{ .Values.deployment.volumeNames.certsVolume }}
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.deployment.secretNames.rootAccount }}
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: {{ .Values.deployment.secretNames.rootAccount }}
