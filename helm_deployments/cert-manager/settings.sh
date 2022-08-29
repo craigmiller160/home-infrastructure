@@ -1,3 +1,3 @@
 #!/bin/sh
 
-arguments="--set installCRDs=true"
+arguments="--set cert-manager.installCRDs=true"
