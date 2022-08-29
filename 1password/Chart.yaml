@@ -4,3 +4,7 @@ description: A helm chart for my Kubernetes Ingress
 type: application
 version: 0.1.0
 appVersion: "1.0.0"
+dependencies:
+  - name: 1password/connect
+    version: 1.8.1
+    repository: https://1password.github.io/connect-helm-charts
