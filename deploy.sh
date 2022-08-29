@@ -52,8 +52,14 @@ function get_values_argument {
   fi
 }
 
+function get_settings {
+  if [ -f ./$3/settings.sh ]; then
+    source ./$3/settings.sh
+  fi
+}
+
 function install_chart {
-  source ./$3/settings.sh
+  get_settings $@
   k8s_context=$(get_k8s_context $@)
   k8s_namespace=$(get_k8s_namespace $@)
   values_arg=$(get_values_argument $@)
@@ -68,7 +74,7 @@ function install_chart {
 }
 
 function template_chart {
-  source ./$3/settings.sh
+  get_settings $@
   k8s_context=$(get_k8s_context $@)
   values_arg=$(get_values_argument $@)
   k8s_namespace=$(get_k8s_namespace $@)
@@ -83,7 +89,7 @@ function template_chart {
 }
 
 function upgrade_chart {
-  source ./$3/settings.sh
+  get_settings $@
   k8s_context=$(get_k8s_context $@)
   values_arg=$(get_values_argument $@)
   k8s_namespace=$(get_k8s_namespace $@)
@@ -98,7 +104,7 @@ function upgrade_chart {
 }
 
 function uninstall_chart {
-  source ./$3/settings.sh
+  get_settings $@
   k8s_context=$(get_k8s_context $@)
   k8s_namespace=$(get_k8s_namespace $@)
 
