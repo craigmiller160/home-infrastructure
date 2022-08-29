@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.name }}
+    spec:
+      initContainers:
+        - name: setup
+          image: busybox:1.28
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              cat /certs-secret/cert | base64 -d > /certs/cert &&
+              cat /certs-secret/key | base64 -d > /certs/key &&
+              chmod 600 /certs/* && chown 999 /certs/*
+          volumeMounts:
+            - mountPath: /certs-secret
+              name: {{ .Values.deployment.volumeNames.certsSecretVolume }}
+            - mountPath: /certs
+              name: {{ .Values.deployment.volumeNames.certsVolume }}
