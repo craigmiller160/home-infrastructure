@@ -55,3 +55,9 @@ spec:
                 secretKeyRef:
                   key: password
                   name: {{ .Values.deployment.secretNames.rootAccount }}
+      volumes:
+        - name: {{ .Values.deployment.volumeNames.certsVolume }}
+          emptyDir: {}
+        - name: {{ .Values.deployment.volumeNames.certsSecretVolume }}
+          secret:
+            secretName: {{ .Values.deployment.secretNames.dbTlsCerts }}
