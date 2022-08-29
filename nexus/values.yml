@@ -1,0 +1,6 @@
+deployment:
+  name: nexus
+  volumeNames:
+    nexusDataVolume: nexus-data-volume
+pvc:
+  name: nexus-data-pvc
