@@ -7,3 +7,6 @@ Above will get IP address for ingress on prod machine
 http://apps-dev-craigmiller160.ddns.net:30010/ingress-test
 
 {{ tpl .Values.deployment.name . }}
+
+
+/var/snap/microk8s/common/default-storage
