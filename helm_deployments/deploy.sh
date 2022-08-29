@@ -8,10 +8,6 @@ function ensure_repos_added {
   helm repo add bitnami https://charts.bitnami.com/bitnami
 }
 
-function ensure_cluster_setup {
-  kubectl apply -f ./k8s_setup/namespaces.yml
-}
-
 function validate_arguments {
   if [ $# -lt 3 ]; then
     echo "Must provide environment, command, and deployment directory"
@@ -128,6 +124,5 @@ function run_chart_command {
 }
 
 validate_arguments $@
-ensure_cluster_setup $@
 ensure_repos_added $@
 run_chart_command $@

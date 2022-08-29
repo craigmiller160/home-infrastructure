@@ -1,6 +1,6 @@
 .DS_Store
 .idea
 *.iml
-1password/1password_creds.json
-1password/1password_token.txt
-*/charts/
+helm_deployments/1password/1password_creds.json
+helm_deployments/1password/1password_token.txt
+/helm_deployments/*/charts/
