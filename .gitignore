@@ -3,3 +3,4 @@
 *.iml
 1password/1password_creds.json
 1password/1password_token.txt
+*/charts/
