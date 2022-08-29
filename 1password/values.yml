@@ -1,4 +1,5 @@
 connect:
-  serviceType: ClusterIP
-operator:
-  create: true
+  connect:
+    serviceType: ClusterIP
+  operator:
+    create: true
