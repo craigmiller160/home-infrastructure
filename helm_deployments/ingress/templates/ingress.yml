@@ -1,28 +1,28 @@
 {{- range $ingress := .Values.ingress }}
-  apiVersion: networking.k8s.io/v1
-  kind: Ingress
-  metadata:
-    name: {{ $ingress.name }}
-    annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: /
-      kubernetes.io/ingress.class: public
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $ingress.name }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: public
 {{/*      cert-manager.io/cluster-issuer: letsencrypt*/}}
-  spec:
-    rules:
-    {{- range $host := $ingress.hosts }}
-      - host: {{ tpl (.name) $ }}
-        http:
-          paths:
-            {{- range $service := $host.services}}
-            - path: {{ $service.path }}
-              pathType: Prefix
-              backend:
-                service:
-                  name: {{ tpl (.serviceName) $ }}
-                  port:
-                    number: {{ $service.portNumber }}
-            {{- end}}
-    {{- end }}
+spec:
+  rules:
+  {{- range $host := $ingress.hosts }}
+    - host: {{ tpl (.name) $ }}
+      http:
+        paths:
+          {{- range $service := $host.services}}
+          - path: {{ $service.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ tpl (.serviceName) $ }}
+                port:
+                  number: {{ $service.portNumber }}
+          {{- end}}
+  {{- end }}
 {{/*    tls:*/}}
 {{/*      - secretName: letsencrypt*/}}
 {{/*        hosts:*/}}
