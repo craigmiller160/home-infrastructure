@@ -1,0 +1,42 @@
+# This is a temporary solution to bridge the gap between the current architecture and the future architecture
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: temporary-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: public
+spec:
+  rules:
+    - host: craigmiller160.ddns.net
+      http:
+        paths:
+          - path: /funcoast-hi
+            pathType: Prefix
+            backend:
+              service:
+                name: funcoast-hi-client-service
+                port:
+                  number: 443
+          - path: /auth-management
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-management-ui-service
+                port:
+                  number: 443
+          - path: /video-manager
+            pathType: Prefix
+            backend:
+              service:
+                name: video-manager-client-service
+                port:
+                  number: 443
+          - path: /market-tracker
+            pathType: Prefix
+            backend:
+              service:
+                name: market-tracker-ui-service
+                port:
+                  number: 443

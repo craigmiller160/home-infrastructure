@@ -1,24 +1,19 @@
+{{- range $ingress := .Values.ingress }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.ingress.name }}
+  name: {{ $ingress.name }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: public
-    cert-manager.io/cluster-issuer: letsencrypt
+{{/*      cert-manager.io/cluster-issuer: letsencrypt*/}}
 spec:
-  tls:
-    - secretName: letsencrypt
-      hosts:
-      {{- range $index, $host := .Values.ingress.hosts }}
-        - {{ $host.name }}
-      {{- end}}
   rules:
-    {{- range $index, $host := .Values.ingress.hosts }}
-    - host: {{ $host.name }}
+  {{- range $host := $ingress.hosts }}
+    - host: {{ tpl (.name) $ }}
       http:
         paths:
-          {{- range $index2, $service := $host.services }}
+          {{- range $service := $host.services}}
           - path: {{ $service.path }}
             pathType: Prefix
             backend:
@@ -26,5 +21,13 @@ spec:
                 name: {{ tpl (.serviceName) $ }}
                 port:
                   number: {{ $service.portNumber }}
-          {{- end }}
-    {{- end }}
+          {{- end}}
+  {{- end }}
+{{/*    tls:*/}}
+{{/*      - secretName: letsencrypt*/}}
+{{/*        hosts:*/}}
+{{/*        {{- range $host := $ingress.hosts }}*/}}
+{{/*          - {{ $host.name }}*/}}
+{{/*        {{- end}}*/}}
+---
+{{- end}}
