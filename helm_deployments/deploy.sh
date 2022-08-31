@@ -42,20 +42,16 @@ function get_k8s_namespace {
 }
 
 function get_values_argument {
-  # TODO make $2
-  if [ -f ./$3/values.yml ]; then
-    # TODO make $2
-    echo "--values ./$3/values.yml"
+  if [ -f ./$2/values.yml ]; then
+    echo "--values ./$2/values.yml"
   else
     echo ""
   fi
 }
 
 function get_settings {
-  # TODO make $2
-  if [ -f ./$3/settings.sh ]; then
-    # TODO make $2
-    source ./$3/settings.sh
+  if [ -f ./$2/settings.sh ]; then
+    source ./$2/settings.sh
   fi
 }
 
@@ -65,10 +61,9 @@ function install_chart {
   k8s_namespace=$(get_k8s_namespace $@)
   values_arg=$(get_values_argument $@)
 
-  # TODO make $2
   helm install \
-    $3 \
-    $3 \
+    $2 \
+    $2 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace \
     $values_arg \
@@ -81,10 +76,9 @@ function template_chart {
   values_arg=$(get_values_argument $@)
   k8s_namespace=$(get_k8s_namespace $@)
 
-  # TODO make $2
   helm template \
-    $3 \
-    $3 \
+    $2 \
+    $2 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace \
     $values_arg \
@@ -97,10 +91,9 @@ function upgrade_chart {
   values_arg=$(get_values_argument $@)
   k8s_namespace=$(get_k8s_namespace $@)
 
-  # TODO make $2
   helm upgrade \
-    $3 \
-    $3 \
+    $2 \
+    $2 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace \
     $values_arg \
@@ -112,23 +105,20 @@ function uninstall_chart {
   k8s_context=$(get_k8s_context $@)
   k8s_namespace=$(get_k8s_namespace $@)
 
-  # TODO make $2
   helm uninstall \
-    $3 \
+    $2 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace
 }
 
 function run_chart_command {
-  # TODO make $3
-  case $2 in
+  case $3 in
     "install") install_chart $@ ;;
     "upgrade") upgrade_chart $@ ;;
     "uninstall") uninstall_chart $@ ;;
     "template") template_chart $@ ;;
     *)
-      # TODO make $3
-      echo "Invalid chart command: $2"
+      echo "Invalid chart command: $3"
       exit 1
     ;;
   esac
