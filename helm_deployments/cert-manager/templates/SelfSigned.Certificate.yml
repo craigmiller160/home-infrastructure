@@ -1,17 +1,17 @@
-# TODO make the names re-usable in the future
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: selfsigned-cert
-spec:
-  commonName: selfsigned-cert
-  secretName: selfsigned-cert
-  privateKey:
-    algorithm: ECDSA
-    size: 256
-  dnsNames:
-    - craigmiller160.ddns.net
-  issuerRef:
-    name: selfsigned
-    kind: ClusterIssuer
-    group: cert-manager.io
+{{/*# TODO make the names re-usable in the future*/}}
+{{/*apiVersion: cert-manager.io/v1*/}}
+{{/*kind: Certificate*/}}
+{{/*metadata:*/}}
+{{/*  name: selfsigned-cert*/}}
+{{/*spec:*/}}
+{{/*  commonName: selfsigned-cert*/}}
+{{/*  secretName: selfsigned-cert*/}}
+{{/*  privateKey:*/}}
+{{/*    algorithm: ECDSA*/}}
+{{/*    size: 256*/}}
+{{/*  dnsNames:*/}}
+{{/*    - craigmiller160.ddns.net*/}}
+{{/*  issuerRef:*/}}
+{{/*    name: selfsigned*/}}
+{{/*    kind: ClusterIssuer*/}}
+{{/*    group: cert-manager.io*/}}
