@@ -9,6 +9,7 @@ metadata:
     kubernetes.io/ingress.class: public
     cert-manager.io/cluster-issuer: selfsigned
     cert-manager.io/private-key-algorithm: ECDSA
+    # TODO when migrating to final ingress, remove prod tls from all backends
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   tls:
