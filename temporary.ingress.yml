@@ -9,6 +9,7 @@ metadata:
     kubernetes.io/ingress.class: public
     cert-manager.io/cluster-issuer: selfsigned
     cert-manager.io/private-key-algorithm: ECDSA
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   tls:
     - secretName: selfsigned-cert-2
