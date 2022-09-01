@@ -7,6 +7,7 @@ Above will get IP address for ingress on prod machine
 http://192.168.7.232:31111/
 
 https://dev-apps-craigmiller160.ddns.net:30010/ingress-test
+https://craigmiller160.ddns.net:30010/funcoast-hi
 http://dev-nexus-craigmiller160.ddns.net:30010
 http://dev-nexus-docker-craigmiller160.ddns.net:30010
 
