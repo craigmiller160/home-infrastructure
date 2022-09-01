@@ -4,7 +4,6 @@ kind: Ingress
 metadata:
   name: {{ $ingress.name }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: public
 {{/*      cert-manager.io/cluster-issuer: letsencrypt*/}}
 spec:
