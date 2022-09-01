@@ -5,7 +5,7 @@ metadata:
   name: temporary-ingress
   namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+#    nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: public
     cert-manager.io/cluster-issuer: selfsigned
     cert-manager.io/private-key-algorithm: ECDSA
