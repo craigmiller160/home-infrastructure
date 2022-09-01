@@ -9,6 +9,8 @@ spec:
   privateKey:
     algorithm: ECDSA
     size: 256
+  dnsNames:
+    - craigmiller160.ddns.net
   issuerRef:
     name: selfsigned
     kind: ClusterIssuer
