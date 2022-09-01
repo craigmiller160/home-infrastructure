@@ -15,3 +15,6 @@ http://dev-nexus-docker-craigmiller160.ddns.net:30010
 
 
 /var/snap/microk8s/common/default-storage
+
+Chrome Bypass
+thisisunsafe
