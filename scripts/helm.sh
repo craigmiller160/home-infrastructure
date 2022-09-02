@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $1 = environment, $2+ = command(s)
+# $1 = name, $2 environment, $3+ = command(s)
 
 helm_script_dir=$(dirname "${BASH_SOURCE[0]}")
 source "$helm_script_dir/variables.sh"
@@ -28,7 +28,7 @@ function uninstall {
   k8s_namespace=$(get_k8s_namespace $@)
 
   heml uninstall \
-    "" \
+    $2 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace
 }
@@ -36,10 +36,18 @@ function uninstall {
 function chart {
   values_arg=$(get_values_argument $@)
   k8s_namespace=$(get_k8s_namespace $@)
+
+  helm ${@:3} \
+    $1 \
+    $run_script_dir \
+    --kube-context=$k8s_context \
+    --namespace $k8s_namespace \
+    $values_arg
+    # TODO need other arguments
 }
 
 function run {
-  case $2 in
+  case $3 in
     "uninstall") uninstall $@ ;;
     *) chart $@ ;;
   esac
