@@ -1,4 +1,9 @@
 terraform {
+  backend "kubernetes" {
+    secret_suffix = "nexus-state"
+    config_path   = "~/.kube/config"
+  }
+
   required_providers {
     nexus = {
       source  = "datadrivers/nexus"
