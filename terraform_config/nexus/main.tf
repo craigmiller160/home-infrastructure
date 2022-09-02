@@ -18,7 +18,7 @@ terraform {
 }
 
 provider "onepassword" {
-  url = join("", ["https://", var.env, "-nexus-craigmiller160.ddns.net/onepassword"])
+  url = join("", ["https://", var.env, "-infra-craigmiller160.ddns.net/onepassword"])
   token = var.onepassword_token
 }
 
