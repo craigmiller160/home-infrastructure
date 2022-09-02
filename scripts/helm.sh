@@ -37,16 +37,26 @@ function chart {
   values_arg=$(get_values_argument $@)
   k8s_namespace=$(get_k8s_namespace $@)
 
+  echo ${@}
+
   helm ${@:3} \
     $1 \
     $run_script_dir \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace \
-    $values_arg
-    # TODO need other arguments
+    $values_arg \
+    $arguments
+}
+
+function validate_arguments {
+  if [ $# -lt 3 ]; then
+    echo "Must provide environment & helm command as arguments"
+    exit 1
+  fi
 }
 
 function run {
+  validate_arguments $@
   case $3 in
     "uninstall") uninstall $@ ;;
     *) chart $@ ;;
