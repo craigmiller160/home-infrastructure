@@ -28,7 +28,7 @@ ingress:
         services:
           - path: /onepassword/(.*)
             serviceName: onepassword-connect
-            portNumber: 8081
+            portNumber: 8080
       - name: "{{ .Values.environment }}-nexus-craigmiller160.ddns.net"
         services:
           - path: /(.*)
