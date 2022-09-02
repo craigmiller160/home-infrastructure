@@ -76,7 +76,7 @@ function template_chart {
   values_arg=$(get_values_argument $@)
   k8s_namespace=$(get_k8s_namespace $@)
 
-  helm template \
+  helm template --debug \
     $2 \
     $2 \
     --kube-context=$k8s_context \

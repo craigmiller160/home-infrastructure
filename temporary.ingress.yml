@@ -7,13 +7,13 @@ metadata:
   annotations:
 #    nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: public
-    cert-manager.io/cluster-issuer: selfsigned
-    cert-manager.io/private-key-algorithm: ECDSA
+    cert-manager.io/cluster-issuer: letsencrypt
+#    cert-manager.io/private-key-algorithm: ECDSA
     # TODO when migrating to final ingress, remove prod tls from all backends
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   tls:
-    - secretName: selfsigned-cert-2
+    - secretName: temporary-ingress-cert
       hosts:
         - craigmiller160.ddns.net
   rules:
