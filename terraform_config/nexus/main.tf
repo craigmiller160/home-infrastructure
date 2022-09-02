@@ -18,7 +18,7 @@ terraform {
 }
 
 provider "onepassword" {
-  url = "https://dev-infra-craigmiller160/onepassword"
+  url = "https://dev-infra-craigmiller160.ddns.net/onepassword"
   token = var.onepassword_token
 }
 
