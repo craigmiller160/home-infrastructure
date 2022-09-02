@@ -5,7 +5,7 @@ metadata:
   name: {{ $ingress.name }}
   annotations:
     kubernetes.io/ingress.class: public
-{{/*      cert-manager.io/cluster-issuer: letsencrypt*/}}
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   rules:
   {{- range $host := $ingress.hosts }}
@@ -22,11 +22,11 @@ spec:
                   number: {{ $service.portNumber }}
           {{- end}}
   {{- end }}
-{{/*    tls:*/}}
-{{/*      - secretName: letsencrypt*/}}
-{{/*        hosts:*/}}
-{{/*        {{- range $host := $ingress.hosts }}*/}}
-{{/*          - {{ $host.name }}*/}}
-{{/*        {{- end}}*/}}
+  tls:
+    - secretName: letsencrypt
+      hosts:
+      {{- range $host := $ingress.hosts }}
+        - {{ $host.name }}
+      {{- end}}
 ---
 {{- end}}
