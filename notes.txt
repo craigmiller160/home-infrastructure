@@ -18,3 +18,8 @@ http://dev-nexus-docker-craigmiller160.ddns.net:30010
 
 Chrome Bypass
 thisisunsafe
+
+OLD PORTS
+
+Ingress HTTPS = 31100
+Ingress HTTP = 31101
