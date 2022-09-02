@@ -23,15 +23,9 @@ provider "onepassword" {
   token = var.onepassword_token
 }
 
-data "onepassword_item" "nexus_admin" {
-  vault = "k6xneqw7nf5f2fm4azxhbdrcji"
-  uuid = "p7w642mhmlyjf7k2myeik2buey"
-}
-
 provider "nexus" {
-  insecure = true
   password = data.onepassword_item.nexus_admin.password
-  username = "admin"
+  username = data.onepassword_item.nexus_admin.username
   # TODO need to support prod
   url = "https://dev-nexus-craigmiller160.ddns.net"
 }
