@@ -37,7 +37,7 @@ function chart {
   values_arg=$(get_values_argument $@)
   k8s_namespace=$(get_k8s_namespace $@)
 
-  echo ${@:3}
+  echo $@
 
   helm ${@:3} \
     $1 \
