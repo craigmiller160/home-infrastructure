@@ -13,12 +13,21 @@ function get_backend_context {
   fi
 }
 
+function validate_arguments {
+  if [ $# -lt 2 ]; then
+    echo "Must specify environment and command to run"
+    exit 1
+  fi
+}
+
 function run {
+  validate_arguments $@
   backend_context=$(get_backend_context $@)
 
   (
     cd $run_script_dir &&
     terraform ${@:2} \
-      $backend_context
+      $backend_context \
+      $arguments
   )
 }

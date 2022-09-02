@@ -1,5 +1,3 @@
-# NPM Repository Group
-
 resource "nexus_repository_npm_hosted" "npm_private" {
   depends_on = [
     nexus_blobstore_file.npm_private

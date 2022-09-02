@@ -9,12 +9,21 @@ terraform {
       source  = "datadrivers/nexus"
       version = "1.21.0"
     }
+
+    onepassword = {
+      source = "1Password/onepassword"
+      version = "1.1.4"
+    }
   }
 }
 
+provider "onepassword" {
+  url = join("", ["https://", var.env, "-infra-craigmiller160.ddns.net/onepassword"])
+  token = var.onepassword_token
+}
+
 provider "nexus" {
-  insecure = true
-  password = var.nexus_admin_password
-  username = "admin"
-  url = join("", ["https://", var.nexus_host])
+  password = data.onepassword_item.nexus_admin.password
+  username = data.onepassword_item.nexus_admin.username
+  url = join("", ["https://", var.env, "-nexus-craigmiller160.ddns.net"])
 }

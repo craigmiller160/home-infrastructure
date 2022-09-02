@@ -1,11 +1,7 @@
-variable "nexus_admin_password" {
+variable "onepassword_token" {
   type = string
 }
 
-variable "nexus_craig_password" {
-  type = string
-}
-
-variable "nexus_host" {
+variable "env" {
   type = string
 }
