@@ -18,14 +18,12 @@ terraform {
 }
 
 provider "onepassword" {
-  # TODO need to support prod
-  url = "https://dev-infra-craigmiller160.ddns.net/onepassword"
+  url = join("", ["https://", var.env, "-nexus-craigmiller160.ddns.net/onepassword"])
   token = var.onepassword_token
 }
 
 provider "nexus" {
   password = data.onepassword_item.nexus_admin.password
   username = data.onepassword_item.nexus_admin.username
-  # TODO need to support prod
-  url = "https://dev-nexus-craigmiller160.ddns.net"
+  url = join("", ["https://", var.env, "-nexus-craigmiller160.ddns.net"])
 }
