@@ -5,9 +5,17 @@ metadata:
   name: temporary-ingress
   namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+#    nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: public
+    cert-manager.io/cluster-issuer: selfsigned
+    cert-manager.io/private-key-algorithm: ECDSA
+    # TODO when migrating to final ingress, remove prod tls from all backends
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
+  tls:
+    - secretName: selfsigned-cert-2
+      hosts:
+        - craigmiller160.ddns.net
   rules:
     - host: craigmiller160.ddns.net
       http:
