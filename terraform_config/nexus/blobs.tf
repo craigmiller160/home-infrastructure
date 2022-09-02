@@ -1,7 +1,7 @@
-#resource "nexus_blobstore_file" "npm_private" {
-#  name = "npm-private"
-#  path = "/nexus-data/npm-private"
-#}
+resource "nexus_blobstore_file" "npm_private" {
+  name = "npm-private"
+  path = "/nexus-data/npm-private"
+}
 #
 #resource "nexus_blobstore_file" "npm_proxy" {
 #  name = "npm-proxy"
