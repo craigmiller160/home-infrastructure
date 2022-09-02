@@ -23,7 +23,7 @@ spec:
           {{- end}}
   {{- end }}
   tls:
-    - secretName: letsencrypt
+    - secretName: {{ $ingress.certSecretName }}
       hosts:
       {{- range $host := $ingress.hosts }}
         - {{ tpl (.name) $ }}
