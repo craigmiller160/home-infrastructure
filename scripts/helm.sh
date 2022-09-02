@@ -6,7 +6,7 @@ helm_script_dir=$(dirname "${BASH_SOURCE[0]}")
 source "$helm_script_dir/variables.sh"
 
 function get_k8s_namespace {
-  case $1 in
+  case $2 in
     "dev") echo $dev_namespace ;;
     "prod") echo $prod_namespace ;;
     *)
