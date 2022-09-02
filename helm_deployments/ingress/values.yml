@@ -3,7 +3,7 @@ ingress_test:
 ingress:
   - name: apps-ingress
     hosts:
-      - name: "{{ .Values.environment }}-craigmiller160.ddns.net"
+      - name: "{{ .Values.environment }}-apps-craigmiller160.ddns.net"
         services:
           - path: /ingress-test
             serviceName: "{{ .Values.ingress_test.name }}"
