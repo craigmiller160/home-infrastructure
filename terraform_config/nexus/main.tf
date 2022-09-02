@@ -21,6 +21,11 @@ provider "onepassword" {
   url = "https://dev-infra-craigmiller160/onepassword"
 }
 
+data "onepassword_item" "nexus_admin" {
+  vault = "k6xneqw7nf5f2fm4azxhbdrcji"
+  uuid = "p7w642mhmlyjf7k2myeik2buey"
+}
+
 #provider "nexus" {
 #  insecure = true
 #  password = var.nexus_admin_password
