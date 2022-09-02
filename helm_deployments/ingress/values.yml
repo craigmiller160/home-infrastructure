@@ -2,6 +2,7 @@ ingress_test:
   name: ingress-test
 ingress:
   - name: apps-ingress
+    certSecretName: apps-cert-secret
     hosts:
       - name: "{{ .Values.environment }}-apps-craigmiller160.ddns.net"
         services:
@@ -21,6 +22,7 @@ ingress:
             serviceName: market-tracker-ui
             portNumber: 443
   - name: infra-ingress
+    certSecretName: infra-cert-secret
     hosts:
       - name: "{{ .Values.environment }}-nexus-craigmiller160.ddns.net"
         services:
