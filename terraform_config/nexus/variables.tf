@@ -9,3 +9,7 @@
 #variable "nexus_host" {
 #  type = string
 #}
+
+variable "onepassword_token" {
+  type = string
+}

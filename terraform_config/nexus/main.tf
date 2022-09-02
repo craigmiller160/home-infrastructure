@@ -19,7 +19,7 @@ terraform {
 
 provider "onepassword" {
   url = "https://dev-infra-craigmiller160/onepassword"
-  token = ""
+  token = var.onepassword_token
 }
 
 data "onepassword_item" "nexus_admin" {
