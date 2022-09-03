@@ -118,6 +118,9 @@ resource "nexus_repository_docker_proxy" "docker_proxy" {
   http_client {
     blocked    = false
     auto_block = true
+    connection {
+      timeout = 30
+    }
   }
 }
 
