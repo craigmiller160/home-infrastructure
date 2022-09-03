@@ -26,8 +26,9 @@ function run {
 
   (
     cd $run_script_dir &&
-    terraform ${@:2} \
+    terraform $2 \
       $backend_context \
-      $arguments
+      $arguments \
+      ${@:3}
   )
 }

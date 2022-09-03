@@ -32,3 +32,4 @@ Ingress HTTP = 31101
 NEXUS UPGRADE INSTRUCTIONS
 /etc directory cannot be copied from old one, contains config files that point to my custom SSL that I don't need anymore
 Sweet, as long as I use the default /etc directory, everything else can be safely copied over
+Migrating existing server to terraform requires import script in nexus directory
