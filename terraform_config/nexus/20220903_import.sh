@@ -8,6 +8,17 @@ import_script_dir=$(dirname "${BASH_SOURCE[0]}")
 IFS=$'\n'
 resources=(
   "nexus_blobstore_file.npm_private npm-private"
+  "nexus_blobstore_file.npm_proxy npm-proxy"
+  "nexus_blobstore_file.npm_group npm-group"
+  "nexus_blobstore_file.docker_private docker-private"
+  "nexus_blobstore_file.docker_proxy docker-proxy"
+  "nexus_blobstore_file.docker_group docker-group"
+  "nexus_repository_npm_hosted.npm_private npm-private"
+  "nexus_repository_npm_proxy.npm_proxy npm-proxy"
+  "nexus_repository_npm_group.npm_group npm-group"
+  "nexus_repository_docker_hosted.docker_private docker-private"
+  "nexus_repository_docker_proxy.docker_proxy docker-proxy"
+  "nexus_repository_docker_group,docker_group docker-group"
 )
 
 function validate_arguments {
@@ -20,6 +31,9 @@ function validate_arguments {
 function import {
   for r in ${resources[@]}; do
     $import_script_dir/run.sh $1 import $r
+    if [ $? -ne 0 ]; then
+      exit 1
+    fi
   done
 }
 
