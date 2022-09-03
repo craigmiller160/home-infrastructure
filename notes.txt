@@ -29,6 +29,8 @@ OLD PORTS
 Ingress HTTPS = 31100
 Ingress HTTP = 31101
 
+DON'T FORGET DOCUMENTING SETTING UP NEXUS FOR MAVEN, GRADLE, AND NPM
+
 NEXUS UPGRADE INSTRUCTIONS
 /etc directory cannot be copied from old one, contains config files that point to my custom SSL that I don't need anymore
 Sweet, as long as I use the default /etc directory, everything else can be safely copied over
