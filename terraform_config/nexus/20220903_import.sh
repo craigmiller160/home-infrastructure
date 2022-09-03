@@ -18,7 +18,8 @@ resources=(
   "nexus_repository_npm_group.npm_group npm-group"
   "nexus_repository_docker_hosted.docker_private docker-private"
   "nexus_repository_docker_proxy.docker_proxy docker-proxy"
-  "nexus_repository_docker_group,docker_group docker-group"
+  "nexus_repository_docker_group.docker_group docker-group"
+  "nexus_security_user.craigmiller160 craigmiller160"
 )
 
 function validate_arguments {
