@@ -42,8 +42,8 @@ spec:
             - mountPath: /certs
               name: {{ .Values.deployment.volumeNames.certsVolume }}
       containers:
-        - name: postgres
-          image: postgres:14.5
+        - name: mongodb
+          image: mongodb:6.0.1
           imagePullPolicy: IfNotPresent
           args:
             - --tlsMode
