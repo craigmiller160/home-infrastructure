@@ -1,16 +1,23 @@
 apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: postgres-selfsigned-issuer
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: my-selfsigned-ca
+  name: postgres-certificate
   namespace: sandbox
 spec:
   isCA: true
-  commonName: my-selfsigned-ca
-  secretName: root-secret
+  commonName: postgres-certificate
+  secretName: postgres-certificate
   privateKey:
     algorithm: ECDSA
     size: 256
   issuerRef:
-    name: selfsigned-issuer
+    name: postgres-selfsigned-issuer
     kind: ClusterIssuer
     group: cert-manager.io
