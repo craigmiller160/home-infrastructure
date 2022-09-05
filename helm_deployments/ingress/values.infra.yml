@@ -1,6 +1,14 @@
 clusterissuer:
   suffix: infra
 ingress:
+  - name: dashboard-ingress
+    certSecretName: dashboard-cert-secret
+    hosts:
+      - name: infra-craigmiller160.ddns.net
+        services:
+          - path: /dashboard/(.*)
+            serviceName: kubernetes-dashboard
+            portNumber: 443
   - name: infra-ingress
     certSecretName: infra-cert-secret
     hosts:
@@ -9,10 +17,6 @@ ingress:
           - path: /onepassword/(.*)
             serviceName: onepassword-connect
             portNumber: 8080
-          # TODO two problems here: 1. in another namespace, and 2. requires HTTPS
-#          - path: /dashboard/(.*)
-#            serviceName: kubernetes-dashboard
-#            portNumber: 443
       - name: nexus-craigmiller160.ddns.net
         services:
           - path: /(.*)
