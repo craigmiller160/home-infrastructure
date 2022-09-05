@@ -32,8 +32,8 @@ spec:
             - sh
             - -c
             - |
-              cat /certs-secret/cert | base64 -d > /certs/cert &&
-              cat /certs-secret/key | base64 -d > /certs/key &&
+              cat /certs-secret/tls.crt > /certs/cert &&
+              cat /certs-secret/tls.key > /certs/key &&
               chmod 600 /certs/* && chown 999 /certs/*
           volumeMounts:
             - mountPath: /certs-secret
@@ -74,7 +74,7 @@ spec:
           emptyDir: {}
         - name: {{ .Values.deployment.volumeNames.certsSecretVolume }}
           secret:
-            secretName: {{ .Values.deployment.secretNames.dbTlsCerts }}
+            secretName: {{ .Values.certificate.name }}
         - name: {{ .Values.deployment.volumeNames.dataVolume }}
           persistentVolumeClaim:
             claimName: {{ .Values.pvc.name }}
