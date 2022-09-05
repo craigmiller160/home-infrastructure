@@ -11,7 +11,7 @@
             <!--This sends everything else to /public -->
             <id>nexus</id>
             <mirrorOf>*</mirrorOf>
-		<url>https://prod-nexus-craigmiller160.ddns.net/repository/maven-public/</url>
+		<url>https://nexus-craigmiller160.ddns.net/repository/maven-public/</url>
         </mirror>
     </mirrors>
     <profiles>
