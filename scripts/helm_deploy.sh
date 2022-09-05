@@ -6,7 +6,7 @@ helm_script_dir=$(dirname "${BASH_SOURCE[0]}")
 source "$helm_script_dir/variables.sh"
 
 function get_k8s_namespace {
-  if [ $OVERRIDE_NAMESPACE != "" ]; then
+  if [ "$OVERRIDE_NAMESPACE" != "" ]; then
     echo $OVERRIDE_NAMESPACE
     return 0
   fi
@@ -22,7 +22,7 @@ function get_k8s_namespace {
 }
 
 function get_values_argument {
-  if [ -f ./$run_script_dir/$OVERRIDE_VALUES_FILE ]; then
+  if [ -f "./$run_script_dir/$OVERRIDE_VALUES_FILE" ]; then
     echo "--values ./$run_script_dir/$OVERRIDE_VALUES_FILE"
   elif [ -f ./$run_script_dir/values.yml ]; then
     echo "--values ./$run_script_dir/values.yml"
