@@ -1,3 +1,6 @@
+certificate:
+  issuer: postgres-selfsigned-issuer
+  name: postgres-certificate
 deployment:
   name: postgres
   secretNames:
