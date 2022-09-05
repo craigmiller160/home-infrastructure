@@ -27,8 +27,8 @@ function get_values_argument {
 function uninstall {
   k8s_namespace=$(get_k8s_namespace $@)
 
-  heml uninstall \
-    $2 \
+  helm uninstall \
+    $1 \
     --kube-context=$k8s_context \
     --namespace $k8s_namespace
 }
