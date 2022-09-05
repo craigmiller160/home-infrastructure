@@ -5,7 +5,6 @@ deployment:
   name: postgres
   secretNames:
     rootAccount: postgres-root-account
-    dbTlsCerts: database-tls-certs
   volumeNames:
     certsSecretVolume: postgres-certs-secret-volume
     certsVolume: postgres-certs-volume

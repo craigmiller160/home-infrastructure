@@ -74,7 +74,7 @@ spec:
           emptyDir: {}
         - name: {{ .Values.deployment.volumeNames.certsSecretVolume }}
           secret:
-            secretName: {{ .Values.deployment.secretNames.dbTlsCerts }}
+            secretName: {{ .Values.certificate.name }}
         - name: {{ .Values.deployment.volumeNames.dataVolume }}
           persistentVolumeClaim:
             claimName: {{ .Values.pvc.name }}
