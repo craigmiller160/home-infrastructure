@@ -35,3 +35,8 @@ NEXUS UPGRADE INSTRUCTIONS
 /etc directory cannot be copied from old one, contains config files that point to my custom SSL that I don't need anymore
 Sweet, as long as I use the default /etc directory, everything else can be safely copied over
 Migrating existing server to terraform requires import script in nexus directory
+
+NPM nexus setup
+1. Delete existing NPM config file, if it exists: `rm ~/.npmrc`.
+    1. Setup NPM registry for downloading content from Nexus: `npm config set registry https://nexus-craigmiller160.ddns.net/repository/npm-group/`.
+    1. Setup NPM user. This will be the `craigmiller160` user, credentials can be found in 1Password: `npm adduser --registry=https://nexus-craigmiller160.ddns.net/repository/npm-private/`.
