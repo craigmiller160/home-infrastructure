@@ -43,7 +43,7 @@ spec:
               name: {{ .Values.deployment.volumeNames.certsVolume }}
       containers:
         - name: mongodb
-          image: mongodb:6.0.1
+          image: mongo:6.0.1
           imagePullPolicy: IfNotPresent
           args:
             - --tlsMode
@@ -53,9 +53,9 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - mountPath: /data/db
-              name: {{ .Values.deployment.volumeNames.certsVolume }}
             - mountPath: /certs
+              name: {{ .Values.deployment.volumeNames.certsVolume }}
+            - mountPath: /data/db
               name: {{ .Values.deployment.volumeNames.dataVolume }}
           env:
             - name: POSTGRES_USER
