@@ -7,3 +7,12 @@ resource "nexus_security_user" "craigmiller160" {
   roles     = ["nx-admin", "nx-anonymous"]
   status    = "active"
 }
+
+resource "nexus_security_realms" "realms" {
+  active = [
+    "NexusAuthenticatingRealm",
+    "NexusAuthorizingRealm",
+    "NpmToken",
+    "DockerToken"
+  ]
+}
