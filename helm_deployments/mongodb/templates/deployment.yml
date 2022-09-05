@@ -16,6 +16,8 @@ metadata:
   name: {{ .Values.deployment.name }}
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: {{ .Values.deployment.name }}
@@ -32,9 +34,8 @@ spec:
             - sh
             - -c
             - |
-              cat /certs-secret/tls.crt > /certs/cert &&
-              cat /certs-secret/tls.key > /certs/key &&
-              chmod 600 /certs/* && chown 999 /certs/*
+              cat /certs-secret/tls.crt > /certs/mongodb.pem &&
+              cat /certs-secret/tls.key >> /certs/mongodb.pem
           volumeMounts:
             - mountPath: /certs-secret
               name: {{ .Values.deployment.volumeNames.certsSecretVolume }}
