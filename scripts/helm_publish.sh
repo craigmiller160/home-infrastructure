@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $1 = SOMETHING, $2 = environment
+# $1 = directory, $2 = environment
 
 helm_script_dir=$(dirname "${BASH_SOURCE[0]}")
 source "$helm_script_dir/variables.sh"
