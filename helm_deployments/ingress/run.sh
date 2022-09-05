@@ -9,4 +9,13 @@ else
   arguments=""
 fi
 
-run ingress $@
+function run_for_namespace {
+  OVERRIDE_NAMESPACE=$1
+  OVERRIDE_VALUES_FILE=$2
+  run ingress ${@:3}
+}
+
+run_for_namespace "infra-$1" values.infra.yml $@
+run_for_namespace "apps-$1" values.apps.yml $@
+# Third one here is for Kubernetes Dashboard
+run_for_namespace kube-system values.dashboard.yml $@
