@@ -1,3 +1,5 @@
+clusterissuer:
+  suffix: apps
 ingress:
   - name: apps-ingress
     certSecretName: apps-cert-secret

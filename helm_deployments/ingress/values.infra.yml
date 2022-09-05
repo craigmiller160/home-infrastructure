@@ -1,3 +1,5 @@
+clusterissuer:
+  suffix: infra
 ingress:
   - name: infra-ingress
     certSecretName: infra-cert-secret
