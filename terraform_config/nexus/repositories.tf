@@ -79,7 +79,7 @@ resource "nexus_repository_docker_hosted" "docker_private" {
   docker {
     force_basic_auth = false
     v1_enabled       = true
-    https_port       = 8083
+    http_port       = 8083
   }
 }
 
