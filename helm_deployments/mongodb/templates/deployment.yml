@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.pvc.name }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: microk8s-hostpath
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.name }}
+    spec:
+      initContainers:
+        - name: setup
+          image: busybox:1.28
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              cat /certs-secret/tls.crt > /certs/mongodb.pem &&
+              cat /certs-secret/tls.key >> /certs/mongodb.pem
+          volumeMounts:
+            - mountPath: /certs-secret
+              name: {{ .Values.deployment.volumeNames.certsSecretVolume }}
+            - mountPath: /certs
+              name: {{ .Values.deployment.volumeNames.certsVolume }}
+      containers:
+        - name: mongodb
+          image: mongo:6.0.1
+          imagePullPolicy: IfNotPresent
+          args:
+            - --tlsMode
+            - requireTLS
+            - --tlsCertificateKeyFile
+            - /certs/mongodb.pem
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /certs
+              name: {{ .Values.deployment.volumeNames.certsVolume }}
+            - mountPath: /data/db
+              name: {{ .Values.deployment.volumeNames.dataVolume }}
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.deployment.secretNames.rootAccount }}
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: {{ .Values.deployment.secretNames.rootAccount }}
+      volumes:
+        - name: {{ .Values.deployment.volumeNames.certsVolume }}
+          emptyDir: {}
+        - name: {{ .Values.deployment.volumeNames.certsSecretVolume }}
+          secret:
+            secretName: {{ .Values.certificate.name }}
+        - name: {{ .Values.deployment.volumeNames.dataVolume }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.pvc.name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.deployment.name }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Values.deployment.name }}
+  ports:
+    - port: 5432
+      targetPort: 5432
+      nodePort: 30021

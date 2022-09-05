@@ -1,0 +1,13 @@
+certificate:
+  issuer: mongodb-selfsigned-issuer
+  name: mongodb-certificate
+deployment:
+  name: mongodb
+  secretNames:
+    rootAccount: mongodb-root-account
+  volumeNames:
+    certsSecretVolume: mongodb-certs-secret-volume
+    certsVolume: mongodb-certs-volume
+    dataVolume: mongodb-data-volume
+pvc:
+  name: mongodb-pvc
