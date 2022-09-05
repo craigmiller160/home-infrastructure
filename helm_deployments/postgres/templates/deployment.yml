@@ -32,8 +32,8 @@ spec:
             - sh
             - -c
             - |
-              cat /certs-secret/cert | base64 -d > /certs/cert &&
-              cat /certs-secret/key | base64 -d > /certs/key &&
+              cat /certs-secret/tls.crt | base64 -d > /certs/cert &&
+              cat /certs-secret/tls.key | base64 -d > /certs/key &&
               chmod 600 /certs/* && chown 999 /certs/*
           volumeMounts:
             - mountPath: /certs-secret
