@@ -148,6 +148,6 @@ resource "nexus_repository_docker_group" "docker_group" {
       nexus_repository_docker_hosted.docker_private.name,
       nexus_repository_docker_proxy.docker_proxy.name
     ]
-    # TODO writeable_member may be a requirement for newer nexus versions
+#    writable_member = nexus_repository_docker_hosted.docker_private.name
   }
 }
