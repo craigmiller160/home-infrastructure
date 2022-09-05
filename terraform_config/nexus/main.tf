@@ -25,5 +25,5 @@ provider "onepassword" {
 provider "nexus" {
   password = data.onepassword_item.nexus_admin.password
   username = data.onepassword_item.nexus_admin.username
-  url = join("", ["https://", var.env, "-nexus-craigmiller160.ddns.net"])
+  url = join("", ["https://", var.env == "dev" ? "dev-" : "", "nexus-craigmiller160.ddns.net"])
 }
