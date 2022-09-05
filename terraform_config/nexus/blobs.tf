@@ -27,3 +27,8 @@ resource "nexus_blobstore_file" "docker_group" {
   name = "docker-group"
   path = "/nexus-data/docker-group"
 }
+
+resource "nexus_blobstore_file" "helm_private" {
+  name = "helm-private"
+  path = "/nexus-data/helm-private"
+}

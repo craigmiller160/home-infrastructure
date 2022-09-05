@@ -10,7 +10,7 @@ function get_k8s_namespace {
     "dev") echo $dev_namespace ;;
     "prod") echo $prod_namespace ;;
     *)
-      echo "Invalid environment: $1"
+      echo "Invalid environment: $2"
       exit 1
     ;;
   esac

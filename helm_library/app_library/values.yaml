@@ -1,0 +1,3 @@
+deployment:
+  name: test
+  image: nginxdemos/hello
