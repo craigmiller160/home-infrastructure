@@ -7,8 +7,8 @@ source "$helm_script_dir/variables.sh"
 
 function get_k8s_namespace {
   case $2 in
-    "dev") echo $dev_namespace ;;
-    "prod") echo $prod_namespace ;;
+    "dev") echo $dev_infra_namespace ;;
+    "prod") echo $prod_infra_namespace ;;
     *)
       echo "Invalid environment: $2"
       exit 1
