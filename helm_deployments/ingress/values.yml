@@ -4,7 +4,7 @@ ingress:
   - name: apps-ingress
     certSecretName: apps-cert-secret
     hosts:
-      - name: "{{ .Values.environment | default \"\" }}-apps-craigmiller160.ddns.net"
+      - name: apps-craigmiller160.ddns.net
         services:
           - path: /ingress-test/(.*)
             serviceName: "{{ .Values.ingress_test.name }}"
@@ -24,17 +24,17 @@ ingress:
   - name: infra-ingress
     certSecretName: infra-cert-secret
     hosts:
-      - name: "{{ .Values.environment | default \"\" }}-infra-craigmiller160.ddns.net"
+      - name: infra-craigmiller160.ddns.net
         services:
           - path: /onepassword/(.*)
             serviceName: onepassword-connect
             portNumber: 8080
-      - name: "{{ .Values.environment | default \"\" }}-nexus-craigmiller160.ddns.net"
+      - name: nexus-craigmiller160.ddns.net
         services:
           - path: /(.*)
             serviceName: nexus
             portNumber: 8081
-      - name: "{{ .Values.environment | default \"\" }}-nexus-docker-craigmiller160.ddns.net"
+      - name: nexus-docker-craigmiller160.ddns.net
         services:
           - path: /(.*)
             serviceName: nexus

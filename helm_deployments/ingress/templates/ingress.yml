@@ -11,7 +11,7 @@ metadata:
 spec:
   rules:
   {{- range $host := $ingress.hosts }}
-    - host: {{ tpl (.name) $ }}
+    - host: {{- if not .Values.environment }} {{ $host.name }} {{- else }} {{ .Values.environment }}-{{ $host.name }} {{- end}}
       http:
         paths:
           {{- range $service := $host.services}}
