@@ -11,7 +11,7 @@ metadata:
 spec:
   rules:
   {{- range $host := $ingress.hosts }}
-    - host: {{- if not .Values.environment }} {{ $host.name }} {{- else }} {{ .Values.environment }}-{{ $host.name }} {{- end}}
+    - host: {{- if not $.Values.environment }} {{ $host.name }} {{- else }} {{ $.Values.environment }}-{{ $host.name }} {{- end}}
       http:
         paths:
           {{- range $service := $host.services}}
@@ -28,6 +28,7 @@ spec:
     - secretName: {{ $ingress.certSecretName }}
       hosts:
       {{- range $host := $ingress.hosts }}
+        # TODO must update the name here too
         - {{ tpl (.name) $ }}
       {{- end}}
 ---
