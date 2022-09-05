@@ -79,7 +79,7 @@ resource "nexus_repository_docker_hosted" "docker_private" {
   docker {
     force_basic_auth = false
     v1_enabled       = true
-    https_port       = 8083
+    http_port       = 8083
   }
 }
 
@@ -148,6 +148,6 @@ resource "nexus_repository_docker_group" "docker_group" {
       nexus_repository_docker_hosted.docker_private.name,
       nexus_repository_docker_proxy.docker_proxy.name
     ]
-    # TODO writeable_member may be a requirement for newer nexus versions
+#    writable_member = nexus_repository_docker_hosted.docker_private.name
   }
 }
