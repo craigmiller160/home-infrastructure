@@ -1,0 +1,18 @@
+ingress:
+  - name: apps-ingress
+    certSecretName: apps-cert-secret
+    hosts:
+      - name: apps-craigmiller160.ddns.net
+        services:
+          - path: /(funcoast-hi/.*)
+            serviceName: funcoast-hi-client
+            portNumber: 443
+          - path: /(auth-management/.*)
+            serviceName: auth-management-ui
+            portNumber: 443
+          - path: /(video-manager/.*)
+            serviceName: video-manager-client
+            portNumber: 443
+          - path: /(market-tracker/.*)
+            serviceName: market-tracker-ui
+            portNumber: 443
