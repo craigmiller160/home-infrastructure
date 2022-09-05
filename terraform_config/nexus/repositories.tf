@@ -151,3 +151,17 @@ resource "nexus_repository_docker_group" "docker_group" {
 #    writable_member = nexus_repository_docker_hosted.docker_private.name
   }
 }
+
+resource "nexus_repository_helm_hosted" "helm_private" {
+  depends_on = [
+    nexus_blobstore_file.helm_private
+  ]
+  name = "helm-private"
+  online = true
+
+  storage {
+    blob_store_name = nexus_blobstore_file.helm_private.name
+    strict_content_type_validation = true
+    write_policy = "ALLOW"
+  }
+}
