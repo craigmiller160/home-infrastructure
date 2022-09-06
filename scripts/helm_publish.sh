@@ -31,8 +31,10 @@ function run {
 
   tar_file=$(get_tar)
 
-  curl -u -v \
-    $NEXUS_USER:$NEXUS_PASSWORD
+  echo "Tar: $tar_file"
+
+  curl -v \
+    -u $NEXUS_USER:$NEXUS_PASSWORD \
     https://$nexus_host/repository/helm-private/ \
     --upload-file $tar_file
 
