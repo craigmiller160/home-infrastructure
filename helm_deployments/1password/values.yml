@@ -3,3 +3,12 @@ connect:
     serviceType: ClusterIP
   operator:
     create: true
+secrets:
+  namespacePrefixes:
+    - infra
+    - apps
+  items:
+    - name: postgres-root-account
+      itemPath: vaults/Home Server (Prod)/items/Postgres Root Account
+    - name: mongodb-root-account
+      itemPath: vaults/Home Server (Prod)/items/MongoDB Root Account
