@@ -22,7 +22,8 @@ spec:
             {{- end}}
           envFrom:
             {{- range $configmap := .Values.deployment.configmaps  }}
-            - {{ $configmap }}
+            - configMapRef:
+                name: {{ $configmap }}
             {{- end}}
           env:
             {{- range $secret := .Values.deployment.secrets  }}
