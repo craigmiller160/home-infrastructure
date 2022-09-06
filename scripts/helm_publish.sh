@@ -17,11 +17,11 @@ function get_nexus_host {
 }
 
 function get_tar {
-  echo $(ls | grep .tar.gz)
+  echo $(ls | grep .tgz)
 }
 
 function remove_tar {
-  rm *.tar.gz
+  rm *.tgz
 }
 
 function run {
@@ -30,8 +30,6 @@ function run {
   helm package $run_script_dir
 
   tar_file=$(get_tar)
-
-  echo "Tar: $tar_file"
 
   curl -v \
     -u $NEXUS_USER:$NEXUS_PASSWORD \
