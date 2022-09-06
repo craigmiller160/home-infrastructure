@@ -21,7 +21,7 @@ spec:
             - containerPort: {{ $port }}
             {{- end}}
           envFrom:
-            {{- range $configmap := .Values.deployment.configmaps  }}
+            {{- range $configmap := .Values.deployment.configMaps  }}
             - configMapRef:
                 name: {{ $configmap }}
             {{- end}}
