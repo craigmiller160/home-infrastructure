@@ -6,3 +6,5 @@ helm_deployments/1password/1password_token.txt
 /helm_deployments/*/charts/
 .secrets
 .terraform
+*.tar.gz
+*.tgz

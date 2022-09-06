@@ -17,11 +17,11 @@ function get_nexus_host {
 }
 
 function get_tar {
-  echo $(ls | grep .tar.gz)
+  echo $(ls | grep .tgz)
 }
 
 function remove_tar {
-  rm *.tar.gz
+  rm *.tgz
 }
 
 function run {
@@ -31,8 +31,8 @@ function run {
 
   tar_file=$(get_tar)
 
-  curl -u -v \
-    $NEXUS_USER:$NEXUS_PASSWORD
+  curl -v \
+    -u $NEXUS_USER:$NEXUS_PASSWORD \
     https://$nexus_host/repository/helm-private/ \
     --upload-file $tar_file
 
