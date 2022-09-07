@@ -39,7 +39,7 @@ spec:
               path: {{ .Values.deployment.livenessProbe.path }}
               port: {{ .Values.deployment.livenessProbe.port }}
               scheme: {{ .Values.deployment.livenessProbe.scheme }}
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 300
           {{- end}}
 ---
