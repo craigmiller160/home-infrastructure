@@ -34,11 +34,7 @@ spec:
                   key: {{ $secret.secretKey }}
             {{- end}}
           {{- if .Values.deployment.livenessProbe }}
-          livenessProbe:
-            httpGet:
-              path: {{ .Values.deployment.livenessProbe.path }}
-              port: {{ .Values.deployment.livenessProbe.port }}
-              scheme: {{ .Values.deployment.livenessProbe.scheme }}
+          livenessProbe: {{ .Values.deployment.livenessProbe | toYaml | trim | nindent 12 }}
             initialDelaySeconds: 30
             periodSeconds: 300
           {{- end}}
