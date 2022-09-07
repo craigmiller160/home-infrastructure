@@ -43,6 +43,7 @@ spec:
             periodSeconds: 300
           {{- end}}
 ---
+{{- if .Values.service.enable }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -56,3 +57,4 @@ spec:
     - port: {{ $port.containerPort }}
       targetPort: {{ $port.containerPort }}
     {{- end}}
+{{- end}}
