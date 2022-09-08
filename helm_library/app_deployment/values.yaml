@@ -1,20 +1,5 @@
 appName: name
 deployment:
   image: image-name
-  ports:
-    - 8443
-  configMaps:
-    - configmap-name
-  secrets:
-    - envVariable: variable-name
-      secretName: secret-name
-      secretKey: key-in-secret
-#  livenessProbe:
-#    path: /the/path
-#    port: 1234
-#    scheme: scheme
 service:
   enable: false
-  type: ClusterIP
-  ports:
-    - containerPort: 8443
