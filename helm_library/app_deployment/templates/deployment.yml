@@ -1,3 +1,19 @@
+{{- range $volume := .Values.volumes }}
+{{- if eq $volume.type "PVC" }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $volume.name }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: microk8s-hostpath
+  resources:
+    requests:
+      storage: 5Gi
+---
+{{- end}}
+{{- end}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,15 +50,29 @@ spec:
                   key: {{ $secret.secretKey }}
             {{- end}}
           {{- if .Values.deployment.livenessProbe }}
-          livenessProbe:
-            httpGet:
-              path: {{ .Values.deployment.livenessProbe.path }}
-              port: {{ .Values.deployment.livenessProbe.port }}
-              scheme: {{ .Values.deployment.livenessProbe.scheme }}
-            initialDelaySeconds: 10
+          livenessProbe: {{ .Values.deployment.livenessProbe | toYaml | trim | nindent 12 }}
+            initialDelaySeconds: 30
             periodSeconds: 300
           {{- end}}
+          volumeMounts:
+            {{- range $volume := .Values.volumes }}
+            - mountPath: {{ $volume.deploymentMountPath }}
+              name: {{ $volume.name }}
+            {{- end }}
+      volumes:
+        {{- range $volume := .Values.volumes }}
+        - name: {{ $volume.name }}
+          {{- if eq $volume.type "PVC" }}
+          persistentVolumeClaim:
+            claimName: {{ $volume.name }}
+          {{- end }}
+          {{- if eq $volume.type "HostPath" }}
+          hostPath:
+            path: {{ $volume.hostPath }}
+          {{- end }}
+        {{- end }}
 ---
+{{- if .Values.service.enable }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -56,3 +86,4 @@ spec:
     - port: {{ $port.containerPort }}
       targetPort: {{ $port.containerPort }}
     {{- end}}
+{{- end}}
