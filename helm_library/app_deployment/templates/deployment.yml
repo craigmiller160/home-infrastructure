@@ -1,5 +1,5 @@
 {{- range $volume := .Values.volumes }}
-{{- if $volume.type == "PVC" }}
+{{- if eq $volume.type "PVC" }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -62,11 +62,11 @@ spec:
       volumes:
         {{- range $volume := .Values.volumes }}
         - name: {{ $volume.name }}
-          {{- if $volume.type == "PVC" }}
+          {{- if eq $volume.type "PVC" }}
           persistentVolumeClaim:
             claimName: {{ $volume.name }}
           {{- end }}
-          {{- if $volume.type == "HostPath" }}
+          {{- if eq $volume.type "HostPath" }}
           hostPath:
             path: {{ $volume.hostPath }}
           {{- end }}
