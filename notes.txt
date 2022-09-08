@@ -40,3 +40,8 @@ NPM nexus setup
 1. Delete existing NPM config file, if it exists: `rm ~/.npmrc`.
     1. Setup NPM registry for downloading content from Nexus: `npm config set registry https://nexus-craigmiller160.ddns.net/repository/npm-group/`.
     1. Setup NPM user. This will be the `craigmiller160` user, credentials can be found in 1Password: `npm adduser --registry=https://nexus-craigmiller160.ddns.net/repository/npm-private/`.
+
+Restoring Postgres Data
+
+Exec into db-backup-service pod and run this:
+psql -h postgres.infra-prod -U postgres_root --dbname oauth2_server -f ./backup_20220908152459.sql
