@@ -87,6 +87,6 @@ spec:
   selector:
     app: {{ .Values.deployment.name }}
   ports:
-    - port: 5432
-      targetPort: 5432
+    - port: 27017
+      targetPort: 27017
       nodePort: 30021
