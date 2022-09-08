@@ -54,6 +54,23 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 300
           {{- end}}
+          volumeMounts:
+            {{- range $volume := .Values.volumes }}
+            - mountPath: {{ $volume.deploymentMountPath }}
+              name: {{ $volume.name }}
+            {{- end }}
+      volumes:
+        {{- range $volume := .Values.volumes }}
+        - name: {{ $volume.name }}
+          {{- if $volume.type == "PVC" }}
+          persistentVolumeClaim:
+            claimName: {{ $volume.name }}
+          {{- end }}
+          {{- if $volume.type == "HostPath" }}
+          hostPath:
+            path: {{ $volume.hostPath }}
+          {{- end }}
+        {{- end }}
 ---
 {{- if .Values.service.enable }}
 apiVersion: v1
