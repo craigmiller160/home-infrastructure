@@ -51,7 +51,7 @@ spec:
             - --tlsCertificateKeyFile
             - /certs/mongodb.pem
           ports:
-            - containerPort: 5432
+            - containerPort: 27017
           volumeMounts:
             - mountPath: /certs
               name: {{ .Values.deployment.volumeNames.certsVolume }}
