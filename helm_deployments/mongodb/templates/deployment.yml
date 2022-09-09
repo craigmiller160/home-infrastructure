@@ -59,12 +59,12 @@ spec:
             - mountPath: /data/db
               name: {{ .Values.deployment.volumeNames.dataVolume }}
           env:
-            - name: POSTGRES_USER
+            - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.deployment.secretNames.rootAccount }}
                   key: username
-            - name: POSTGRES_PASSWORD
+            - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
