@@ -13,6 +13,9 @@ spec:
   isCA: true
   commonName: {{ .Values.certificate.name }}
   secretName: {{ .Values.certificate.name }}
+  dnsNames:
+    - craigmiller160.ddns.net
+    - localhost
   privateKey:
     algorithm: ECDSA
     size: 256
