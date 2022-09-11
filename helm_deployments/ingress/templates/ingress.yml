@@ -8,9 +8,6 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-{{ $.Values.clusterissuer.suffix }}
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/proxy-body-size: 1000m
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      # TODO this is bad because it'll redirect on anything that ends in "s". Temporary fix, not permanent
-      rewrite ^(\/.*[^\/s])$ $1/ redirect;
     {{- if $ingress.backendIsHttps }}
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     {{- end}}

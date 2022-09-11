@@ -10,7 +10,7 @@ ingress:
           - path: /(funcoast-hi/.*)
             serviceName: funcoast-hi-client
             portNumber: 443
-          - path: /(auth-management/.*)
+          - path: /(auth-management(/.*)?)
             serviceName: auth-management-ui
             portNumber: 443
           - path: /(video-manager/.*)
