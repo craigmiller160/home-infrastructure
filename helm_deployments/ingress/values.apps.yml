@@ -1,20 +1,21 @@
 clusterissuer:
   suffix: apps
 ingress:
-  - name: apps-ingress
-    certSecretName: apps-cert-secret
+  - name: apps-https-backend-ingress
+    certSecretName: apps-https-backend-cert-secret
+    backendIsHttps: true
     hosts:
       - name: apps-craigmiller160.ddns.net
         services:
-          - path: /(funcoast-hi/.*)
+          - path: /(funcoast-hi(/.*)?)
             serviceName: funcoast-hi-client
             portNumber: 443
-          - path: /(auth-management/.*)
+          - path: /(auth-management(/.*)?)
             serviceName: auth-management-ui
             portNumber: 443
-          - path: /(video-manager/.*)
+          - path: /(video-manager(/.*)?)
             serviceName: video-manager-client
             portNumber: 443
-          - path: /(market-tracker/.*)
+          - path: /(market-tracker(/.*)?)
             serviceName: market-tracker-ui
             portNumber: 443
