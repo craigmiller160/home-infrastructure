@@ -25,6 +25,10 @@ app-deployment:
     - name: db-backup-service-volume
       type: PVC
       deploymentMountPath: /output
+    - name: db-backup-service-volume
+      type: NFS
+      nfsPath: /otherPath
+      deploymentMountPath: /output
   service:
     enable: true
     type: ClusterIP
