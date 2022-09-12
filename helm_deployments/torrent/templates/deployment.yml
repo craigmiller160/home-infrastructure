@@ -26,6 +26,7 @@ spec:
           ports:
             - containerPort: {{ .Values.port }}
       volumes:
+        # TODO volumes need to be refactored
         - name: qbittorrent-config
           hostPath:
             path: /opt/kubernetes/data/qbittorrent/config
