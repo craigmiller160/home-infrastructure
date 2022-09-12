@@ -26,13 +26,13 @@ spec:
     spec:
       containers:
         - name: qbittorrent
-          image: ghcr.io/linuxserver/qbittorrent
+          image: ghcr.io/linuxserver/qbittorrent:4.4.5
           envFrom:
             - configMapRef:
                 name: qbittorrent-config
           volumeMounts:
-            - mountPath: /downloads
-              name: qbittorrent-downloads
+{{/*            - mountPath: /downloads*/}}
+{{/*              name: qbittorrent-downloads*/}}
             - mountPath: /config
               name: qbittorrent-config
           ports:
@@ -41,10 +41,10 @@ spec:
         - name: qbittorrent-config
           persistentVolumeClaim:
             claimName: {{ .Values.pvc.name }}
-        - name: qbittorrent-downloads
-          nfs:
-            server: nfs-server.infra-{{ .Values.environment }}
-            path: /
+{{/*        - name: qbittorrent-downloads*/}}
+{{/*          nfs:*/}}
+{{/*            server: nfs-server.infra-{{ .Values.environment }}*/}}
+{{/*            path: /*/}}
 ---
 apiVersion: v1
 kind: Service
