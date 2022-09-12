@@ -20,14 +20,17 @@ spec:
                 name: nfs-server-config
           ports:
             - containerPort: {{ .Values.port }}
+          volumeMounts:
+            {{- range $volume := .Values.volumes }}
+            - name: {{ $volume.name }}
+              mountPath: {{ $volume.mountPath }}
+            {{- end}}
       volumes:
-        # TODO volumes need to be refactored
-        - name: qbittorrent-config
+        {{- range $volume := .Values.volumes }}
+        - name: {{ $volume.name }}
           hostPath:
-            path: /opt/kubernetes/data/qbittorrent/config
-        - name: qbittorrent-downloads
-          hostPath:
-            path: /opt/kubernetes/data/qbittorrent/downloads
+            path: {{ $volume.hostPath }}
+        {{-end }}
 ---
 apiVersion: v1
 kind: Service
