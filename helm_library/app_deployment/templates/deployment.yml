@@ -62,7 +62,7 @@ spec:
       volumes:
         {{- range $volume := .Values.volumes }}
         - name: {{ $volume.name }}
-          {{- if of (eq $volume.type "PVC") (eq $volume.type "Shared-PVC") }}
+          {{- if or (eq $volume.type "PVC") (eq $volume.type "Shared-PVC") }}
           persistentVolumeClaim:
             claimName: {{ $volume.name }}
           {{- end }}
