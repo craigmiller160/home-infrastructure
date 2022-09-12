@@ -44,7 +44,7 @@ spec:
         - name: qbittorrent-downloads
           nfs:
             server: nfs-server.infra-{{ .Values.environment }}
-            path: /exports
+            path: /
 ---
 apiVersion: v1
 kind: Service
