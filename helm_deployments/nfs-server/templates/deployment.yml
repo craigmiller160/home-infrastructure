@@ -14,12 +14,14 @@ spec:
     spec:
       containers:
         - name: nfs-server
-          image: erichough/nfs-server:2.2.1
-          envFrom:
-            - configMapRef:
-                name: nfs-server-config
+          image: k8s.gcr.io/volume-nfs:0.8
+          securityContext:
+            privileged: true
           ports:
-            - containerPort: {{ .Values.port }}
+            {{- range $port := .Values.ports }}
+            - name: {{ $port.name }}
+              containerPort: {{ $port.port }}
+            {{- end }}
           volumeMounts:
             {{- range $volume := .Values.volumes }}
             - name: {{ $volume.name }}
@@ -41,6 +43,8 @@ spec:
   selector:
     app: {{ .Values.appName }}
   ports:
-    - port: {{ .Values.port }}
-      targetPort: {{ .Values.port }}
-      protocol: TCP
+    {{- range $port := .Values.ports }}
+    - name: {{ $port.name }}
+      targetPort: {{ $port.port }}
+      port: {{ $port.port }}
+    {{- end }}
