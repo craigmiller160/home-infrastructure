@@ -6,5 +6,4 @@ data:
   PUID: "1000"
   PGID: "1000"
   TZ: US/Eastern
-  # TODO probably needs to change the port
-  WEBUI_PORT: "30007"
+  WEBUI_PORT: "{{ .Values.port }}"
