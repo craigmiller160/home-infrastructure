@@ -62,15 +62,13 @@ spec:
       volumes:
         {{- range $volume := .Values.volumes }}
         - name: {{ $volume.name }}
-          {{- if eq $volume.type "PVC" }}
+          {{- if of (eq $volume.type "PVC") (eq $volume.type "Shared-PVC") }}
           persistentVolumeClaim:
             claimName: {{ $volume.name }}
           {{- end }}
           {{- if eq $volume.type "NFS" }}
           nfs:
-{{/*            server: nfs-server.infra-prod*/}}
-            # TODO go back to hostname
-            server: 10.152.183.66
+            server: nfs-server.infra-prod
             path: {{ $volume.nfsPath }}
           {{- end }}
         {{- end }}
