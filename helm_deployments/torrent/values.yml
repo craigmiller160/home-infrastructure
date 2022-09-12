@@ -1,4 +1,0 @@
-appName: qbittorrent
-port: 80
-pvc:
-  name: mongodb-pvc
