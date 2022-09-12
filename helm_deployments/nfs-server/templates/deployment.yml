@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: nfs-server
+          image: erichough/nfs-server:2.2.1
+          envFrom:
+            - configMapRef:
+                name: nfs-server-config
+          ports:
+            - containerPort: {{ .Values.port }}
+      volumes:
+        # TODO volumes need to be refactored
+        - name: qbittorrent-config
+          hostPath:
+            path: /opt/kubernetes/data/qbittorrent/config
+        - name: qbittorrent-downloads
+          hostPath:
+            path: /opt/kubernetes/data/qbittorrent/downloads
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .Values.appName }}
+  ports:
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
+      protocol: TCP
