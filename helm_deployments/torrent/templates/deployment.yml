@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.pvc.name }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: microk8s-hostpath
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,13 +38,13 @@ spec:
           ports:
             - containerPort: {{ .Values.port }}
       volumes:
-        # TODO volumes need to be refactored
         - name: qbittorrent-config
-          hostPath:
-            path: /opt/kubernetes/data/qbittorrent/config
+          persistentVolumeClaim:
+            claimName: {{ .Values.pvc.name }}
         - name: qbittorrent-downloads
-          hostPath:
-            path: /opt/kubernetes/data/qbittorrent/downloads
+          nfs:
+            server: nfs-server.infra-{{ .Values.environment }}
+            path: /files/downloads
 ---
 apiVersion: v1
 kind: Service
