@@ -68,7 +68,9 @@ spec:
           {{- end }}
           {{- if eq $volume.type "NFS" }}
           nfs:
-            server: nfs-server.infra-prod
+{{/*            server: nfs-server.infra-prod*/}}
+            # TODO go back to hostname
+            server: 10.152.183.66
             path: {{ $volume.nfsPath }}
           {{- end }}
         {{- end }}
