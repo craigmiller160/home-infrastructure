@@ -9,4 +9,4 @@ ports:
 volumes:
   - name: downloads-directory
     hostPath: /home/craig/Downloads
-    mountPath: /files/downloads
+    mountPath: /exports
