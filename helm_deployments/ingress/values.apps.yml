@@ -26,4 +26,4 @@ ingress:
         services:
           - path: /(torrent(/.*)?)
             serviceName: qbittorrent
-            portNumber: 80
+            portNumber: 8080
