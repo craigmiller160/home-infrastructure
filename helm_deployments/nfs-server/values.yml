@@ -10,3 +10,5 @@ volumes:
   - name: downloads-directory
     hostPath: /home/craig/Downloads
     mountPath: /exports
+csi-driver-nfs:
+  kubeletDir: /var/snap/microk8s/common/var/lib/kubelet
