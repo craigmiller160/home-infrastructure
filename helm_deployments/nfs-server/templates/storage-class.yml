@@ -5,7 +5,7 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
   server: nfs-server.infra-prod
-  share: /exports
+  share: /
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
 mountOptions:
