@@ -48,4 +48,5 @@ spec:
     - name: {{ $port.name }}
       targetPort: {{ $port.port }}
       port: {{ $port.port }}
+      protocol: {{ $port.protocol | default "TCP" }}
     {{- end }}
