@@ -66,6 +66,10 @@ spec:
           persistentVolumeClaim:
             claimName: {{ $volume.name }}
           {{- end }}
+          {{- if eq $volume.type "HostPath" }}
+          hostPath:
+            path: {{ $volume.hostPath }}
+          {{- end }}
           {{- if eq $volume.type "NFS" }}
           nfs:
             server: nfs-server.infra-prod
