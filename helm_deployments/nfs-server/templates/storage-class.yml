@@ -6,8 +6,7 @@ provisioner: nfs.csi.k8s.io
 parameters:
   server: nfs-server.infra-prod
   share: /exports
-# TODO what should this policy be?
-{{/*reclaimPolicy: Delete*/}}
+reclaimPolicy: Retain
 volumeBindingMode: Immediate
 mountOptions:
   - hard
