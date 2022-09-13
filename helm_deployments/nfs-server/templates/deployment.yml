@@ -21,7 +21,7 @@ spec:
             {{- range $port := .Values.ports }}
             - name: {{ $port.name }}
               containerPort: {{ $port.port }}
-              protocol: {{ $port.protocl | default "TCP" }}
+              protocol: {{ $port.protocol | default "TCP" }}
             {{- end }}
           volumeMounts:
             {{- range $volume := .Values.volumes }}
