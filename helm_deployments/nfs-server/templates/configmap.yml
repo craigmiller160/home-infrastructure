@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.appName }}-config
+data:
+  {{- range $index, $volume := .Values.volumes }}
+  NFS_EXPORT_{{ $index }}: {{ $volume.mountPath }}
+  {{- end }}

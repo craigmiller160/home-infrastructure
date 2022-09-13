@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: nfs-server
+          image: k8s.gcr.io/volume-nfs:0.8
+          securityContext:
+            privileged: true
+          ports:
+            {{- range $port := .Values.ports }}
+            - name: {{ $port.name }}
+              containerPort: {{ $port.port }}
+              protocol: {{ $port.protocol | default "TCP" }}
+            {{- end }}
+          volumeMounts:
+            {{- range $volume := .Values.volumes }}
+            - name: {{ $volume.name }}
+              mountPath: {{ $volume.mountPath }}
+            {{- end}}
+      volumes:
+        {{- range $volume := .Values.volumes }}
+        - name: {{ $volume.name }}
+          hostPath:
+            path: {{ $volume.hostPath }}
+        {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .Values.appName }}
+  ports:
+    {{- range $port := .Values.ports }}
+    - name: {{ $port.name }}
+      targetPort: {{ $port.port }}
+      port: {{ $port.port }}
+      protocol: {{ $port.protocol | default "TCP" }}
+    {{- end }}

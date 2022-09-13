@@ -19,3 +19,11 @@ ingress:
           - path: /(market-tracker(/.*)?)
             serviceName: market-tracker-ui
             portNumber: 443
+  - name: apps-http-backend-ingress
+    certSecretName: app-http-backend-cert-secret
+    hosts:
+      - name: apps-craigmiller160.ddns.net
+        services:
+          - path: /torrent/?(.*)?
+            serviceName: qbittorrent
+            portNumber: 8080
