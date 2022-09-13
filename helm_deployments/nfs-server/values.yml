@@ -6,6 +6,7 @@ ports:
     port: 20048
   - name: rpcbind
     port: 111
+    protocol: UDP
 volumes:
   - name: downloads-directory
     hostPath: /home/craig/Downloads

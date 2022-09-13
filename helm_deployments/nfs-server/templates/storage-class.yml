@@ -4,7 +4,7 @@ metadata:
   name: nfs-csi
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: nfs-server.infra-prod
+  server: nfs-server.infra-prod.svc.cluster.local
   share: /
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
