@@ -24,6 +24,6 @@ ingress:
     hosts:
       - name: apps-craigmiller160.ddns.net
         services:
-          - path: /(torrent(/.*)?)
+          - path: /torrent/(.*)?
             serviceName: qbittorrent
             portNumber: 8080
