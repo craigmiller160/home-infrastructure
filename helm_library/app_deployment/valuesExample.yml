@@ -1,6 +1,8 @@
 app-deployment:
   appName: db-backup-service
   image: nexus-docker-craigmiller160.ddns.net/db-backup-service:latest
+  # Optional, defaults to 1
+  replicas: 1
   configMaps:
     - db-backup-service-configmap
   secrets:

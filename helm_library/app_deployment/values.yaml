@@ -1,5 +1,0 @@
-appName: name
-deployment:
-  image: image-name
-service:
-  enable: false
