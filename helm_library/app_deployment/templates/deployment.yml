@@ -39,20 +39,20 @@ spec:
               protocol: {{ $port.protocol | default "TCP" }}
             {{- end}}
           envFrom:
-            {{- range $configmap := .Values.deployment.configMaps  }}
+            {{- range $configmap := .Values.configMaps  }}
             - configMapRef:
                 name: {{ $configmap }}
             {{- end}}
           env:
-            {{- range $secret := .Values.deployment.secrets  }}
+            {{- range $secret := .Values.secrets  }}
             - name: {{ $secret.envVariable }}
               valueFrom:
                 secretKeyRef:
                   name: {{ $secret.secretName }}
                   key: {{ $secret.secretKey }}
             {{- end}}
-          {{- if .Values.deployment.livenessProbe }}
-          livenessProbe: {{ .Values.deployment.livenessProbe | toYaml | trim | nindent 12 }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe: {{ .Values.livenessProbe | toYaml | trim | nindent 12 }}
             initialDelaySeconds: 30
             periodSeconds: 300
           {{- end}}
@@ -74,7 +74,7 @@ spec:
           {{- end }}
         {{- end }}
 ---
-{{- if .Values.service.enable }}
+{{- if gt (len .Values.ports) 0 }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -84,8 +84,11 @@ spec:
   selector:
     app: {{ .Values.appName }}
   ports:
-    {{- range $port := .Values.service.ports }}
+    {{- range $port := .Values.ports }}
     - port: {{ $port.containerPort }}
       targetPort: {{ $port.containerPort }}
+      {{- if $port.nodePort }}
+      nodePort: {{ $port.nodePort }}
+      {{- end}}
     {{- end}}
 {{- end}}
