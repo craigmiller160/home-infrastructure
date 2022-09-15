@@ -33,8 +33,10 @@ spec:
           image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
           ports:
-            {{- range $port := .Values.deployment.ports }}
-            - containerPort: {{ $port }}
+            {{- range $port := .Values.ports }}
+            - name: {{ $port.name | default "Port" }}
+              containerPort: {{ $port.containerPort }}
+              protocol: {{ $port.protocol | default "TCP" }}
             {{- end}}
           envFrom:
             {{- range $configmap := .Values.deployment.configMaps  }}
