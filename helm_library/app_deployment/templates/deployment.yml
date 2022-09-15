@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             {{- range $port := .Values.ports }}
-            - name: {{ $port.name | default "Port" }}
+            - name: {{ $port.name | default "port" }}
               containerPort: {{ $port.containerPort }}
               protocol: {{ $port.protocol | default "TCP" }}
             {{- end}}
@@ -85,7 +85,7 @@ spec:
   ports:
     {{- range $port := .Values.ports }}
     - port: {{ $port.containerPort }}
-      name: {{ $port.name | default "Port" }}
+      name: {{ $port.name | default "port" }}
       targetPort: {{ $port.containerPort }}
       protocol: {{ $port.protocol | default "TCP" }}
     {{- end}}
