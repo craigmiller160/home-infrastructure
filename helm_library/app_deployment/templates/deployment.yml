@@ -7,7 +7,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: {{ $volume.className | default "microk8s-hostpath" }}
+  storageClassName: "microk8s-hostpath"
   resources:
     requests:
       storage: 5Gi
@@ -62,18 +62,13 @@ spec:
       volumes:
         {{- range $volume := .Values.volumes }}
         - name: {{ $volume.name }}
-          {{- if or (eq $volume.type "PVC") (eq $volume.type "Shared-PVC") }}
+          {{- if eq $volume.type "PVC") }}
           persistentVolumeClaim:
             claimName: {{ $volume.name }}
           {{- end }}
           {{- if eq $volume.type "HostPath" }}
           hostPath:
             path: {{ $volume.hostPath }}
-          {{- end }}
-          {{- if eq $volume.type "NFS" }}
-          nfs:
-            server: nfs-server.infra-prod
-            path: {{ $volume.nfsPath }}
           {{- end }}
         {{- end }}
 ---
