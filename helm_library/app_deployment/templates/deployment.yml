@@ -64,7 +64,7 @@ spec:
       volumes:
         {{- range $volume := .Values.volumes }}
         - name: {{ $volume.name }}
-          {{- if eq $volume.type "PVC") }}
+          {{- if eq $volume.type "PVC" }}
           persistentVolumeClaim:
             claimName: {{ $volume.name }}
           {{- else if eq $volume.type "HostPath" }}
