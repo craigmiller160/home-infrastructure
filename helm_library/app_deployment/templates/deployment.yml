@@ -79,16 +79,13 @@ kind: Service
 metadata:
   name: {{ .Values.appName }}
 spec:
-  # TODO this part is still broken
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   selector:
     app: {{ .Values.appName }}
   ports:
     {{- range $port := .Values.ports }}
     - port: {{ $port.containerPort }}
       targetPort: {{ $port.containerPort }}
-      {{- if $port.nodePort }}
-      nodePort: {{ $port.nodePort }}
-      {{- end}}
+      protocol: {{ $port.protocol | default "TCP" }}
     {{- end}}
 {{- end}}

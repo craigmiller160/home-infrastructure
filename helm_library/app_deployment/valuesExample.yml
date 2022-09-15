@@ -35,7 +35,5 @@ app-deployment:
     - containerPort: 8443
       # Only required if multiple ports
       name: ThePort
-      # If no nodePort, will be ClusterIP, otherwise will be NodePort
-      nodePort: 30010
       # Optional, defaults to TCP
       protocol: TCP
