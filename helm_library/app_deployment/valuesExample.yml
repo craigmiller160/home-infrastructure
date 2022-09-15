@@ -1,34 +1,37 @@
 app-deployment:
   appName: db-backup-service
-  deployment:
-    image: nexus-docker-craigmiller160.ddns.net/db-backup-service:latest
-    configMaps:
-      - db-backup-service-configmap
-    secrets:
-      - envVariable: db.postgres.user
-        secretName: postgres-root-account
-        secretKey: username
-    livenessProbe:
-      # Option #1
-      exec:
-        command:
-          - sh
-          - /output/liveness.sh
-      # Option #2
-      httpGet:
-        path: /actuator/health
-        port: 8443
-        scheme: HTTPS
+  image: nexus-docker-craigmiller160.ddns.net/db-backup-service:latest
+  configMaps:
+    - db-backup-service-configmap
+  secrets:
+    - envVariable: db.postgres.user
+      secretName: postgres-root-account
+      secretKey: username
+  livenessProbe:
+    # Option #1
+    exec:
+      command:
+        - sh
+        - /output/liveness.sh
+    # Option #2
+    httpGet:
+      path: /actuator/health
+      port: 8443
+      scheme: HTTPS
   volumes:
-    - name: db-backup-service-volume
+    # Will create PVC
+    - name: volume1
       type: PVC
       deploymentMountPath: /output
-    - name: db-backup-service-volume
-      type: NFS
-      nfsPath: /otherPath
+    # Will use HostPath
+    - name: volume2
+      type: HostPath
+      hostPath: /otherPath
       deploymentMountPath: /output
+  # Will create service if specified
   ports:
     - name: ThePort
       containerPort: 8443
+      # If no nodePort, will be ClusterIP, otherwise will be NodePort
       nodePort: 30010
       protocol: TCP
