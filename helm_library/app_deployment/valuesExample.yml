@@ -4,8 +4,6 @@ app-deployment:
     image: nexus-docker-craigmiller160.ddns.net/db-backup-service:latest
     configMaps:
       - db-backup-service-configmap
-    ports:
-      - 8443
     secrets:
       - envVariable: db.postgres.user
         secretName: postgres-root-account
@@ -29,8 +27,8 @@ app-deployment:
       type: NFS
       nfsPath: /otherPath
       deploymentMountPath: /output
-  service:
-    enable: true
-    type: ClusterIP
-    ports:
-      - containerPort: 8443
+  ports:
+    - name: ThePort
+      containerPort: 8443
+      nodePort: 30010
+      protocol: TCP
