@@ -2,6 +2,10 @@
 
 This is a repo containing all the core pieces of my infrastructure, plus scripts to help easily deploy them. All sections are managed using either Helm or Terraform.
 
+## Dev vs Prod Infrastructure
+
+Most of the time, there will be no dev infrastructure. However, all the projects in this repo are configured to support a dev environment, if experimental changes need to be worked on. 
+
 ## Sections
 
 ### helm_deployments
