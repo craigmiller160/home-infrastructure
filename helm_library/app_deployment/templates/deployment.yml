@@ -67,8 +67,7 @@ spec:
           {{- if eq $volume.type "PVC") }}
           persistentVolumeClaim:
             claimName: {{ $volume.name }}
-          {{- end }}
-          {{- if eq $volume.type "HostPath" }}
+          {{- else if eq $volume.type "HostPath" }}
           hostPath:
             path: {{ $volume.hostPath }}
           {{- end }}
@@ -80,6 +79,7 @@ kind: Service
 metadata:
   name: {{ .Values.appName }}
 spec:
+  # TODO this part is still broken
   type: {{ .Values.service.type }}
   selector:
     app: {{ .Values.appName }}
