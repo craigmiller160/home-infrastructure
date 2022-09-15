@@ -27,3 +27,12 @@ This is where deployed applications are configured via Terraform. Applications c
 ```bash
 ./terraform_config/{library name}/run.sh {dev or prod} {terraform command}
 ```
+
+## Secrets
+
+A file called `.secrets` must be placed in the root of this project. It needs to contain 1Password credentials so that various projects here can access values within 1Password. The file should look like this:
+
+```
+onepassword_creds=BASE_64_ENCODED_CREDENTIALS_JSON
+onepassword_token=TOKEN_VALUE
+```
