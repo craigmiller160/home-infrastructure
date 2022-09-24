@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # $1 = name, $2 environment, $3+ = command(s)
 
