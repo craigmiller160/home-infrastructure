@@ -19,6 +19,9 @@ ingress:
           - path: /(market-tracker(/.*)?)
             serviceName: market-tracker-ui
             portNumber: 443
+          - path: /oauth2/(.*)?
+            serviceName: sso-oauth2-server
+            portNumber: 8443
   - name: apps-http-backend-ingress
     certSecretName: app-http-backend-cert-secret
     hosts:
