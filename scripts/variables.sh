@@ -1,6 +1,6 @@
 #!/bin/sh
 
-k8s_context=microk8s-prod
+k8s_context=microk8s
 dev_infra_namespace=infra-dev
 dev_apps_namespace=apps-dev
 prod_infra_namespace=infra-prod
