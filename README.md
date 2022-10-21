@@ -8,6 +8,10 @@ Most of the time, there will be no dev infrastructure. However, all the projects
 
 ## Sections
 
+### k8s_setup
+
+Some basic kubernetes files for initial setup.
+
 ### helm_deployments
 
 Major applications & components of my Kubernetes cluster all configured as Helm Charts. Can be deployed with their run scripts:
