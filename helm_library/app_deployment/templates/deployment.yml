@@ -20,6 +20,8 @@ metadata:
   name: {{ .Values.appName }}
 spec:
   replicas: {{ .Values.replicas | default 1 }}
+  strategy:
+    type: {{ .Values.deploymentStrategy | default "Recreate" }}
   selector:
     matchLabels:
       app: {{ .Values.appName }}
