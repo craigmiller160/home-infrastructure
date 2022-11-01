@@ -1,0 +1,6 @@
+Fixing PANIC
+
+If a transaction fails, there can be a panic in the pod. Unsure of what causes this 100%, requires manual repairs.
+
+1. Change the data volume to an arbitrary location and restart the deployment. This will allow you to shell into the pod.
+2. /usr/lib/postgresql/14/bin/pg_resetwal -f /var/lib/postgresql/foo/ is the command
