@@ -41,21 +41,15 @@ spec:
             - mountPath: /certs
               name: {{ .Values.deployment.volumeNames.certsVolume }}
       containers:
-        - name: postgres
-          image: postgres:14.5
+        - name: postgres-panic-fix
+          image: {{ .Values.deployment.image }}
           imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 0
           args:
-            - -c
-            - ssl=on
-            - -c
-            - ssl_cert_file=/var/lib/postgresql/certs/cert
-            - -c
-            - ssl_key_file=/var/lib/postgresql/certs/key
-          ports:
-            - containerPort: 5432
+            - pg_resetwal
+            - /var/lib/postgresql/data
           volumeMounts:
-            - mountPath: /var/lib/postgresql/certs
-              name: {{ .Values.deployment.volumeNames.certsVolume }}
             - mountPath: /var/lib/postgresql/data
               name: {{ .Values.deployment.volumeNames.dataVolume }}
           env:
@@ -69,6 +63,34 @@ spec:
                 secretKeyRef:
                   key: password
                   name: {{ .Values.deployment.secretNames.rootAccount }}
+#        - name: postgres
+#          image: {{ .Values.deployment.image }}
+#          imagePullPolicy: IfNotPresent
+#          args:
+#            - -c
+#            - ssl=on
+#            - -c
+#            - ssl_cert_file=/var/lib/postgresql/certs/cert
+#            - -c
+#            - ssl_key_file=/var/lib/postgresql/certs/key
+#          ports:
+#            - containerPort: 5432
+#          volumeMounts:
+#            - mountPath: /var/lib/postgresql/certs
+#              name: {{ .Values.deployment.volumeNames.certsVolume }}
+#            - mountPath: /var/lib/postgresql/data
+#              name: {{ .Values.deployment.volumeNames.dataVolume }}
+#          env:
+#            - name: POSTGRES_USER
+#              valueFrom:
+#                secretKeyRef:
+#                  name: {{ .Values.deployment.secretNames.rootAccount }}
+#                  key: username
+#            - name: POSTGRES_PASSWORD
+#              valueFrom:
+#                secretKeyRef:
+#                  key: password
+#                  name: {{ .Values.deployment.secretNames.rootAccount }}
       volumes:
         - name: {{ .Values.deployment.volumeNames.certsVolume }}
           emptyDir: {}
