@@ -22,7 +22,7 @@ ingress:
           - path: /oauth2/(.*)?
             serviceName: sso-oauth2-server
             portNumber: 8443
-          - path: /(expense-tracker/(.*)?)
+          - path: /(expense-tracker(/.*)?)
             serviceName: expense-tracker-ui
             portNumber: 443
   - name: apps-http-backend-ingress
