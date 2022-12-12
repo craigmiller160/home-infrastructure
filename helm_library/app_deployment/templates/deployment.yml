@@ -89,6 +89,9 @@ spec:
     - port: {{ $port.containerPort }}
       name: {{ $port.name | default "port" }}
       targetPort: {{ $port.containerPort }}
+      {{- if $port.nodePort }}
+      nodePort: {{ $port.nodePort }}
+      {{- end }}
       protocol: {{ $port.protocol | default "TCP" }}
     {{- end}}
 {{- end}}
