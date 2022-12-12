@@ -31,9 +31,13 @@ app-deployment:
       type: HostPath
       hostPath: /otherPath
       deploymentMountPath: /output
+  # Optional, defaults to ClusterIP if not specified
+  serviceType: ClusterIP
   # Will create service if specified
   ports:
     - containerPort: 8443
+      # Only required if NodePort service
+      nodePort: 30000
       # Only required if multiple ports
       name: ThePort
       # Optional, defaults to TCP
