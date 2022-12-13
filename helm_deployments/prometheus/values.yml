@@ -1,8 +1,6 @@
 kube-prometheus-stack:
   namespaceOverride: prometheus
   grafana:
-    # TODO provide this via cli
-    adminPassword: foobar
     ingress:
       enabled: true
       annotations:
