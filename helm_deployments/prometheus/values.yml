@@ -7,10 +7,10 @@ kube-prometheus-stack:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: public
-        cert-manager.io/cluster-issuer: letsencrypt-prometheus
+        cert-manager.io/cluster-issuer: letsencrypt-grafana
       hosts:
-        - prometheus-craigmiller160.ddns.net
+        - grafana-craigmiller160.ddns.net
       tls:
-        - secretName: prometheus-tls
+        - secretName: grafana-tls
           hosts:
-            - prometheus-craigmiller160.ddns.net
+            - grafana-craigmiller160.ddns.net
