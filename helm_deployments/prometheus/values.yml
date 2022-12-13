@@ -10,3 +10,7 @@ kube-prometheus-stack:
         cert-manager.io/cluster-issuer: letsencrypt-prometheus
       hosts:
         - prometheus-craigmiller160.ddns.net
+      tls:
+        - secretName: prometheus-tls
+          hosts:
+            - prometheus-craigmiller160.ddns.net
