@@ -1,0 +1,9 @@
+kube-prometheus-stack:
+  # TODO provide this via cli
+  adminPassword: foobar
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: public
+    hosts:
+      - prometheus-craigmiller160.ddns.net
