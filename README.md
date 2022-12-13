@@ -38,9 +38,10 @@ This is where deployed applications are configured via Terraform. Applications c
 
 ## Secrets
 
-A file called `.secrets` must be placed in the root of this project. It needs to contain 1Password credentials so that various projects here can access values within 1Password. The file should look like this:
+A file called `.secrets` must be placed in the root of this project. It needs to contain 1Password credentials so that various projects here can access values within 1Password. It should also have the admin password for Grafana. The file should look like this:
 
 ```
 onepassword_creds=BASE_64_ENCODED_CREDENTIALS_JSON
 onepassword_token=TOKEN_VALUE
+grafana_admin_password=PASSWORD
 ```
