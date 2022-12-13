@@ -1,10 +1,12 @@
 kube-prometheus-stack:
-  # TODO provide this via cli
-  adminPassword: foobar
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: public
-      cert-manager.io/cluster-issuer: letsencrypt-prometheus
-    hosts:
-      - prometheus-craigmiller160.ddns.net
+  namespaceOverride: prometheus
+  grafana:
+    # TODO provide this via cli
+    adminPassword: foobar
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: public
+        cert-manager.io/cluster-issuer: letsencrypt-prometheus
+      hosts:
+        - prometheus-craigmiller160.ddns.net
