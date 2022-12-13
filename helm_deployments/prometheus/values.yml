@@ -5,5 +5,6 @@ kube-prometheus-stack:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: public
+      cert-manager.io/cluster-issuer: letsencrypt-prometheus
     hosts:
       - prometheus-craigmiller160.ddns.net
