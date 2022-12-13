@@ -1,0 +1,14 @@
+kube-prometheus-stack:
+  namespaceOverride: prometheus
+  grafana:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: public
+        cert-manager.io/cluster-issuer: letsencrypt-grafana
+      hosts:
+        - grafana-craigmiller160.ddns.net
+      tls:
+        - secretName: grafana-tls
+          hosts:
+            - grafana-craigmiller160.ddns.net
