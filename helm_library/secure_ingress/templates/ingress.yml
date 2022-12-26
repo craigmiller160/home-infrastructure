@@ -1,19 +1,18 @@
-{{- range $ingress := .Values.ingress }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $ingress.name }}
+  name: {{ .Values.name }}
   annotations:
     kubernetes.io/ingress.class: public
     cert-manager.io/cluster-issuer: letsencrypt-{{ $.Values.clusterissuer.suffix }}
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/proxy-body-size: 1000m
-    {{- if $ingress.backendIsHttps }}
+    {{- if .Values.backendIsHttps }}
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     {{- end}}
 spec:
   rules:
-  {{- range $host := $ingress.hosts }}
+  {{- range $host := .Values.hosts }}
     - host: {{- if not $.Values.environment }} {{ $host.name }} {{- else }} {{ $.Values.environment }}-{{ $host.name }} {{- end}}
       http:
         paths:
@@ -28,10 +27,9 @@ spec:
           {{- end}}
   {{- end }}
   tls:
-    - secretName: {{ $ingress.certSecretName }}
+    - secretName: {{ .Values.certSecretName }}
       hosts:
-      {{- range $host := $ingress.hosts }}
-        - {{- if not $.Values.environment }} {{ $host.name }} {{- else }} {{ $.Values.environment }}-{{ $host.name }} {{- end}}
+      {{- range $host := .Values.hosts }}
+        - {{- if not .Values.environment }} {{ $host.name }} {{- else }} {{ .Values.environment }}-{{ $host.name }} {{- end}}
       {{- end}}
 ---
-{{- end}}
