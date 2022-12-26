@@ -10,9 +10,7 @@ ingress:
           - path: /(funcoast-hi(/.*)?)
             serviceName: funcoast-hi-client
             portNumber: 443
-          - path: /(market-tracker(/.*)?)
-            serviceName: market-tracker-ui
-            portNumber: 443
+
           - path: /oauth2/(.*)?
             serviceName: sso-oauth2-server
             portNumber: 8443
