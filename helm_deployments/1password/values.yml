@@ -12,3 +12,11 @@ secrets:
       itemPath: vaults/Home Server (Prod)/items/Postgres Root Account
     - name: mongodb-root-account
       itemPath: vaults/Home Server (Prod)/items/MongoDB Root Account
+secure_ingress:
+  name: onepassword-ingress
+  hosts:
+    - name: infra-craigmiller160.ddns.net
+      services:
+        - path: /onepassword/(.*)
+          serviceName: onepassword-connect
+          portNumber: 8080
