@@ -1,5 +1,4 @@
 name: apps-https-backend-ingress
-certSecretName: apps-https-backend-cert-secret
 backendIsHttps: true
 hosts:
   - name: apps-craigmiller160.ddns.net
