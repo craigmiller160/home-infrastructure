@@ -32,4 +32,3 @@ spec:
       {{- range $host := .Values.hosts }}
         - {{- if not .Values.environment }} {{ $host.name }} {{- else }} {{ .Values.environment }}-{{ $host.name }} {{- end}}
       {{- end}}
----
