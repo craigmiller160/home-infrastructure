@@ -2,5 +2,8 @@ dependencies:
 - name: connect
   repository: https://1password.github.io/connect-helm-charts
   version: 1.9.0
-digest: sha256:87bb0eb52386926e08589ca14fc5954a66a6fbd44df508d5a5d6a7b24e042311
-generated: "2022-10-26T15:12:30.246555-04:00"
+- name: secure_ingress
+  repository: https://nexus-craigmiller160.ddns.net/repository/helm-private
+  version: 1.0.0
+digest: sha256:6793e7f03d809d59ff4ad1f694fe3550e5c4d7f93154aad1c9a6aff281d822a8
+generated: "2022-12-25T20:58:10.782099-05:00"
