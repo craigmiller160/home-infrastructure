@@ -1,0 +1,6 @@
+dependencies:
+- name: secure_ingress
+  repository: https://nexus-craigmiller160.ddns.net/repository/helm-private
+  version: 1.0.0
+digest: sha256:45f897584b326498a004440947540cb1a6a056b0ebdb09ea16d2e80812f70ca9
+generated: "2022-12-25T20:32:57.852694-05:00"
