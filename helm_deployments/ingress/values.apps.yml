@@ -13,9 +13,6 @@ ingress:
           - path: /(auth-management(/.*)?)
             serviceName: auth-management-ui
             portNumber: 443
-          - path: /(video-manager(/.*)?)
-            serviceName: video-manager-client
-            portNumber: 443
           - path: /(market-tracker(/.*)?)
             serviceName: market-tracker-ui
             portNumber: 443
