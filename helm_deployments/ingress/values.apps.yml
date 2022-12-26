@@ -10,9 +10,6 @@ ingress:
           - path: /(funcoast-hi(/.*)?)
             serviceName: funcoast-hi-client
             portNumber: 443
-          - path: /(auth-management(/.*)?)
-            serviceName: auth-management-ui
-            portNumber: 443
           - path: /(market-tracker(/.*)?)
             serviceName: market-tracker-ui
             portNumber: 443
