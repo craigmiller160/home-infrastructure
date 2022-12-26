@@ -1,8 +1,9 @@
-name: dashboard-ingress
-backendIsHttps: true
-hosts:
-  - name: infra-craigmiller160.ddns.net
-    services:
-      - path: /dashboard/(.*)
-        serviceName: kubernetes-dashboard
-        portNumber: 443
+secure_ingress:
+  name: dashboard-ingress
+  backendIsHttps: true
+  hosts:
+    - name: infra-craigmiller160.ddns.net
+      services:
+        - path: /dashboard/(.*)
+          serviceName: kubernetes-dashboard
+          portNumber: 443
