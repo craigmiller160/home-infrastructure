@@ -4,3 +4,16 @@ deployment:
     nexusDataVolume: nexus-data-volume
 pvc:
   name: nexus-data-pvc
+secure_ingress:
+  name: nexus-ingress
+  hosts:
+    - name: nexus-craigmiller160.ddns.net
+      services:
+        - path: /(.*)
+          serviceName: nexus
+          portNumber: 8081
+    - name: nexus-docker-craigmiller160.ddns.net
+      services:
+        - path: /(.*)
+          serviceName: nexus
+          portNumber: 8083
