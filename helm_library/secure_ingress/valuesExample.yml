@@ -1,8 +1,0 @@
-name: apps-https-backend-ingress
-backendIsHttps: true
-hosts:
-  - name: apps-craigmiller160.ddns.net
-    services:
-      - path: /(funcoast-hi(/.*)?)
-        serviceName: funcoast-hi-client
-        portNumber: 443
